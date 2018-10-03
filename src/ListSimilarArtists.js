@@ -17,6 +17,7 @@ class ListSimilarArtists extends Component {
 	}
 
 	componentDidMount(){
+
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
 			.then(resp => this.setState({artists : resp.similarartists.artist}))
