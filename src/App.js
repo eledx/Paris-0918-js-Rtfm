@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import ListSimilarArtists from './ListSimilarArtists';
+import SearchArtist from './SearchArtist';
+import TopTrack from './TopTrack';
 import './App.css';
-import ListSimilarArtists from './ListSimilarArtists';
-import ArtistGetInfo from './ArtistGetInfo';
 
 class App extends Component {
 
@@ -23,8 +23,9 @@ class App extends Component {
           >
             Learn React
           </a>
-          <ListSimilarArtists />
-          <ArtistGetInfo />
+
+          <TopTrack />
+
         </header>
       </div>
     );
