@@ -15,7 +15,7 @@ class ListSimilarArtists extends Component {
 		this.limit = '3';
 		return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
-
+	
 	componentDidMount(){
 
 		fetch(this.requestUrlApi())
@@ -28,7 +28,7 @@ class ListSimilarArtists extends Component {
 			<div>
 				{this.state.artists.map(
 					(element, i) =>
-						<div key={i}> 
+						<div key={i}>
 							<h2>{element.name}</h2>
 							<p>{element.image[3].size}</p>
 							<img src={element.image[2]["#text"]} alt="img"></img>
