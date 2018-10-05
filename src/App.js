@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
 import ListSimilarArtists from './ListSimilarArtists';
-import SearchArtist from './SearchArtist';
+import ArtistGetInfo from './ArtistGetInfo';
 import TopTrack from './TopTrack';
 import './App.css';
 
@@ -9,25 +9,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-
-          <TopTrack />
-
-        </header>
-      </div>
+      // <div className="App">
+      //   <header className="App-header">
+      //     <h1>TopTrack</h1>
+      //     <TopTrack />
+      //     <h1>ListSimilarArtists</h1>
+      //     <ListSimilarArtists />
+      //     <h1>ArtistGetInfo</h1>
+      //     <ArtistGetInfo />
+      //   </header>
+      // </div>
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <NavLink exact className="navbarlink" to="/listsimilarartists"> ListSimilarArtists </NavLink>
+            <NavLink className="navbarlink" to="/artistgetinfo"> ArtistGetInfo </NavLink>
+            <NavLink className="navbarlink" to="/toptrack"> TopTrack </NavLink>
+            <Switch>
+                <Route exact path="/listsimilarartists" component={ListSimilarArtists} />
+                <Route path="/artistgetinfo" component={ArtistGetInfo} />
+                <Route path="/toptrack" component={TopTrack} />
+            </Switch>
+          </header>
+        </div>
+      </BrowserRouter>
     );
   }
 }

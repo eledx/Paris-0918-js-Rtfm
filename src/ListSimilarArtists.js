@@ -12,7 +12,7 @@ class ListSimilarArtists extends Component {
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getsimilar';
 
-		this.artistName = 'The Rolling Stones';
+		this.artistName = 'The Kinks';
 		this.limit = '3';
 		return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
@@ -33,7 +33,7 @@ class ListSimilarArtists extends Component {
 						<div key={i}>
 							<h2>{element.name}</h2>
 							<p>{element.image[3].size}</p>
-							<img src={element.image[2]["#text"]} alt="img"></img>
+							<img src={element.image[3]["#text"]} alt="img"></img>
 						</div>
 				)}
 			</div>
