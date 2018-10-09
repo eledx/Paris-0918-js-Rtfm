@@ -1,44 +1,48 @@
 import React, { Component } from 'react';
 
 
-class TopTrack extends Component {
+class MusicPlayer extends Component {
 	constructor(props){
     	super(props);
     	this.state = { tracks : null };
   	}
 
 	requestUrlApi(){
-    	this.apiBase = 'http://audioscrobbler.com/2.0/?';
-		this.apiKey = 'af05581a38f69802ba020346115c8834';
-		this.method = 'artist.getTopTracks';
-		this.artistName = 'eminem';
-		this.limit = '5';
-    	return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
+		this.proxy = `https://fc87ae8a.ngrok.io`;
+		this.artistName = '';
+		this.limit = '10';
+    	return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
   	}
 
 	  componentDidMount(){
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
-			.then(resp => this.setState({tracks : resp.toptracks.track}))
+			.then(resp => this.setState({tracks : resp.data}))
+			.then(resp => console.log(this.state.tracks))
 	}
 
 	render() {
+		console.log(this.state);
         if(this.state.tracks === null){
             return "loading";
         }
 		return (
 			<div>
-                <h1>{this.state.tracks[0].artist.name}</h1>
-                <img src={this.state.tracks[0].image[2]['#text']} alt={this.state.tracks[0].artist.name} />
+				<h2>Morceaux</h2>
 				{this.state.tracks.map(
-					(element, i) => 
-					<div>
-						<h2 key={i}>{element.name} - {element.artist.name}</h2>
-					</div>
+					(element, i) =>
+						<div key={i}>
+							<h3>{element.title}, {element.artist.name}</h3>
+							<audio controls="controls">
+							<source src={element.preview} type="audio/mp3" />
+							`Votre navigateur n'est pas compatible`
+							</audio>
+							<img src={element.album.cover_medium} alt={element.artist.name} />
+						</div>
 				)}
 			</div>
 		);
 	}
 }
 
-export default TopTrack;
+export default MusicPlayer;
