@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
-import ListSimilarArtists from './ListSimilarArtists';
+import SimilarArtists from './SimilarArtists';
 import ArtistGetInfo from './ArtistGetInfo';
 import TopTrack from './TopTrack';
 import MusicPlayer from './MusicPlayer'
@@ -12,9 +12,8 @@ class App extends Component {
     super()
     this.state = {
       userInput: '',
-      finalSearch: '',
-      suggestions: [],
-      similarArtists: []
+      finalSearch: null,
+      suggestions: []
     }
   }
 
@@ -36,19 +35,20 @@ class App extends Component {
     event.preventDefault()
     this.setState({finalSearch: event.target[0].value})
     this.setState({userInput: event.target[0].value})
-    console.log(this.state)
+    console.log('submit', this.state)
   }
 
   // Instructions à exécuter sur le clic d'un nom d'artiste
   handleArtistClick = (event) => {
     this.setState({finalSearch: event.target.innerText})
     this.setState({userInput: event.target.innerText})
-    console.log('artisClick' , this.state)
+    console.log('artistClick' , this.state)
   }
 
-
-
   render() {
+    if(this.state.finalSearch !== null){
+      return <SimilarArtists artistInput={this.state.finalSearch} />
+    }
     return (
       <BrowserRouter>
         <div className="App">
@@ -66,12 +66,11 @@ class App extends Component {
               (element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
             )}
               </div>
-            <NavLink exact className="navbarlink" to="/listsimilarartists"> ListSimilarArtists </NavLink>
             <NavLink className="navbarlink" to="/artistgetinfo"> ArtistGetInfo </NavLink>
             <NavLink className="navbarlink" to="/toptrack"> TopTrack </NavLink>
             <NavLink className="navbarlink" to="/musicplayer"> MusicPlayer </NavLink>
             <Switch>
-                <Route exact path="/listsimilarartists" component={ListSimilarArtists} />
+                <Route exact path="/similarartists" component={SimilarArtists} />
                 <Route path="/artistgetinfo" component={ArtistGetInfo} />
                 <Route path="/toptrack" component={TopTrack} />
                 <Route path="/musicplayer" component={MusicPlayer} />

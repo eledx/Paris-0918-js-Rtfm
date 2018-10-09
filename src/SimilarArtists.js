@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 
 
-class ListSimilarArtists extends Component {
+class SimilarArtists extends Component {
 	constructor(props){
     	super(props);
     	this.state = { artists : [] };
   	}
 
-	requestUrlApi(){
+	requestUrlApi(artist){
     	this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getsimilar';
-		this.artistName = 'The Kinks';
 		this.limit = '5';
-		return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
+		return `${this.apiBase}method=${this.method}&artist=${artist}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
 	
 	componentDidMount(){
-		fetch(this.requestUrlApi())
+		fetch(this.requestUrlApi(this.props.artistInput))
 			.then(resp => resp.json())
 			.then(resp => this.setState({artists : resp.similarartists.artist}))
 	}
 
 	render() {
+		console.log('SimilarArtist.js', this.props.artistInput)
 		return (
 			<div>
 				{this.state.artists.map(
@@ -37,4 +37,4 @@ class ListSimilarArtists extends Component {
 	}
 }
 
-export default ListSimilarArtists;
+export default SimilarArtists;
