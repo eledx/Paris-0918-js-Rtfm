@@ -10,16 +10,6 @@ class App extends Component {
 
   render() {
     return (
-      // <div className="App">
-      //   <header className="App-header">
-      //     <h1>TopTrack</h1>
-      //     <TopTrack />
-      //     <h1>ListSimilarArtists</h1>
-      //     <ListSimilarArtists />
-      //     <h1>ArtistGetInfo</h1>
-      //     <ArtistGetInfo />
-      //   </header>
-      // </div>
       <BrowserRouter>
         <div className="App">
           <header className="App-header">

@@ -33,7 +33,7 @@ class ArtistGetInfo extends Component {
 			.then(resp => console.log(this.state.artists.bio.summary))
 		fetch(this.apiConcerts())
 			.then(resp => resp.json())
-			.then(resp =>  this.setState({concert : resp}))
+			.then(resp => this.setState({concert : resp}))
 			.then(resp => console.log(this.state.concert[0].venue.city))
 	}
 
@@ -48,7 +48,7 @@ class ArtistGetInfo extends Component {
 			<div>
 				<h3>{this.state.artists.name}</h3>
 				<p>{this.state.artists.bio.summary}</p>
-				<img src={this.state.artists.image[3]["#text"]} alt="img"></img>
+				<img src={this.state.artists.image[3]["#text"]} alt="img" />
 				<p>Next concert in {this.state.concert[0].venue.city}, {this.state.concert[0].venue.country}</p>
 			</div>
 		);
