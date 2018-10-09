@@ -11,7 +11,7 @@ class TopTrack extends Component {
     	this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getTopTracks';
-		this.artistName = 'Tyr';
+		this.artistName = 'The Kinks';
 		this.limit = '5';
     	return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
   	}

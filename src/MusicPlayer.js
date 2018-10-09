@@ -9,7 +9,7 @@ class MusicPlayer extends Component {
 
 	requestUrlApi(){
 		this.proxy = `https://fc87ae8a.ngrok.io`;
-		this.artistName = '';
+		this.artistName = 'The Kinks';
 		this.limit = '10';
     	return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
   	}
