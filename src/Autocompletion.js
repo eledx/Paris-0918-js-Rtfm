@@ -6,61 +6,69 @@ class Autocompletion extends Component {
   constructor() {
     super()
     this.state = {
-      search: '',
+      userInput: '',
       finalSearch: '',
       suggestions: [],
+      similarArtists: []
     }
   }
 
-  updateSearch(event) {
-    event.preventDefault()
-    this.setState({search: event.target.value})
+  updateSearch = (event) => {
+    this.setState({userInput: event.target.value})
     this.requestAutocompletion(event.target.value)
   }
 
-  requestAutocompletion(artist){
+  requestAutocompletion = (artist) => {
     fetch(`http://audioscrobbler.com/2.0/?method=artist.search&artist=${artist}&limit=5&api_key=af05581a38f69802ba020346115c8834&format=json`)
     .then(resp => resp.json())
     .then(resp => this.setState({suggestions : resp.results.artistmatches.artist}))
     }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.setState({finalSearch: event.target[0].value})
-    console.log('YO')
-    console.log(this)
-    this.props.method.requestSimilarArtist(this.state.finalSearch)
+    // this.setState({userInput: event.target[0].value})
+    console.log(this.state)
+    this.requestSimilarArtist(this.state.finalSearch)
   }
 
-  handleSuggestionClick(event) {
-    event.preventDefault()
+  handleArtistClick = (event) => {
     this.setState({finalSearch: event.target.innerText})
-    console.log('YO')
-    console.log(this.state)
-    this.props.method.requestSimilarArtist(this.state.finalSearch)
+    // this.setState({userInput: event.target.innerText})
+    console.log('artisClick' , this.state)
+    this.requestSimilarArtist(this.state.finalSearch)
   }
+
+  requestSimilarArtist = (artist) =>{
+    console.log('similar: ', artist)
+    fetch(`http://audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artist}&limit=10&api_key=af05581a38f69802ba020346115c8834&format=json`)
+      .then(resp => resp.json())
+      .then(resp => this.setState({similarArtists : resp.similarartists.artist}))
+    }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" placeholder="Votre artiste"
-          value={this.state.search}
-          onChange={this.updateSearch.bind(this)}/>
+        <form onSubmit={this.handleSubmit}>
+          <input 
+          type="text" 
+          placeholder="Votre artiste"
+          value={this.state.userInput}
+          onChange={this.updateSearch}/>
           <button>Search</button>
-          {/* <p> Vous avez tapé : {this.state.search}</p>
-          <p> recherce finale: {this.state.finaleSearch}</p> */}
-          <div>
+        </form>
+        <div>
         {this.state.suggestions.map(
-          (element, i) => <p key={i} onClick={this.handleSuggestionClick.bind(this)}>{element.name}</p>
+          (element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
         )}
           </div>
-        </form>
+          <div>
+        {this.state.similarArtists.map((element, i) => <h2 key={i} onClick={this.handleArtistClick}>{element.name}</h2>)}
+        </div>
       </div>
     );
   }
 }
 
 export default Autocompletion;
-
 
