@@ -13,28 +13,34 @@ class App extends Component {
     this.state = {
       userInput: '',
       finalSearch: null,
-      suggestions: []
+      suggestions: [],
+      ShowAutocompletion: false
     }
   }
 
-  // Afficher nom d'artiste dans searchBar & appeler l'autocomplétion
+  // Instructions à exécuter sur le changement de l'input:
+  // afficher le nom d'artiste dans la searchbar & appeler l'autocomplétion
   searchBarDisplay = (event) => {
     this.setState({userInput: event.target.value})
     this.requestAutocompletion(event.target.value)
+    this.setState({ShowAutocompletion:true})
+    console.log('searchDisplay', this.state)
   }
 
-  //  Appel de l'API : méthode d'autocomplétion
+  //  Appel de l'API pour utiliser la méthode d'autocomplétion
   requestAutocompletion = (artist) => {
     fetch(`http://audioscrobbler.com/2.0/?method=artist.search&artist=${artist}&limit=5&api_key=af05581a38f69802ba020346115c8834&format=json`)
     .then(resp => resp.json())
     .then(resp => this.setState({suggestions : resp.results.artistmatches.artist}))
     }
 
+
   // Instructions à exécuter sur le clic du bouton submit
   handleSubmit = (event) => {
     event.preventDefault()
     this.setState({finalSearch: event.target[0].value})
     this.setState({userInput: event.target[0].value})
+    this.setState({ShowAutocompletion:false})
     console.log('submit', this.state)
   }
 
@@ -42,13 +48,12 @@ class App extends Component {
   handleArtistClick = (event) => {
     this.setState({finalSearch: event.target.innerText})
     this.setState({userInput: event.target.innerText})
+    this.setState({ShowAutocompletion:false})
     console.log('artistClick' , this.state)
   }
 
   render() {
-    if(this.state.finalSearch !== null){
-      return <SimilarArtists artistInput={this.state.finalSearch} />
-    }
+    console.log(this.state) 
     return (
       <BrowserRouter>
         <div className="App">
@@ -62,9 +67,8 @@ class App extends Component {
               <button>Search</button>
             </form>
             <div>
-            {this.state.suggestions.map(
-              (element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
-            )}
+              {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
+            ))}
               </div>
             <NavLink className="navbarlink" to="/artistgetinfo"> ArtistGetInfo </NavLink>
             <NavLink className="navbarlink" to="/toptrack"> TopTrack </NavLink>
@@ -76,10 +80,13 @@ class App extends Component {
                 <Route path="/musicplayer" component={MusicPlayer} />
             </Switch>
           </header>
+          <SimilarArtists artistInput={this.state.finalSearch} />
         </div>
       </BrowserRouter>
     );
-  }
+    }
+
+
 }
 
 export default App;

@@ -25,13 +25,13 @@ class SimilarArtists extends Component {
 		console.log('SimilarArtist.js', this.props.artistInput)
 		return (
 			<div>
-				{this.state.artists.map(
+				{this.props.artistInput !== null && (this.state.artists.map(
 					(element, i) =>
 						<div key={i}>
 							<h2>{element.name}</h2>
 							<img src={element.image[3]["#text"]} alt="img"></img>
 						</div>
-				)}
+				))}
 			</div>
 		);
 	}
