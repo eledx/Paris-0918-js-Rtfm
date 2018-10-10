@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
 import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
 import SimilarArtists from './SimilarArtists';
 import ArtistGetInfo from './ArtistGetInfo';
 import TopTrack from './TopTrack';
-import MusicPlayer from './MusicPlayer'
+import Tracks from './Tracks';
+
 import './App.css';
+
 
 class App extends Component {
 
@@ -55,9 +60,58 @@ class App extends Component {
   render() {
     console.log(this.state) 
     return (
-      <BrowserRouter>
+      <div>
+        <Header />
+        <BrowserRouter>
         <div className="App">
             <header className="App-header">
+            <h1>RTFM</h1>
+            <form onSubmit={this.handleSubmit}>
+              <input 
+              type="text" 
+              placeholder="Votre artiste"
+              value={this.state.userInput}
+              onChange={this.searchBarDisplay}/>
+              <button>Search</button>
+            </form>
+            <div>
+              {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
+            ))}
+              </div>
+            <NavLink className="navbarlink" to="/artistgetinfo"> ArtistGetInfo </NavLink>
+            <NavLink className="navbarlink" to="/toptrack"> TopTrack </NavLink>
+            <NavLink className="navbarlink" to="/tracks"> Tracks </NavLink>
+            <Switch>
+                <Route exact path="/similarartists" component={SimilarArtists} />
+                <Route path="/artistgetinfo" component={ArtistGetInfo} />
+                <Route path="/toptrack" component={TopTrack} />
+                <Route path="/tracks" component={Tracks} />
+            </Switch>
+          </header>
+          <SimilarArtists artistInput={this.state.finalSearch} />
+        </div>
+      </BrowserRouter>
+        <Footer />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+/*import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
+import ListSimilarArtists from './ListSimilarArtists';
+import ArtistGetInfo from './ArtistGetInfo';
+import TopTrack from './TopTrack';
+import MusicPlayer from './MusicPlayer'
+import Autocompletion from './Autocompletion';*/
+
+/*</div>
+<BrowserRouter>
+        <div className="App">
+            <header className="App-header">
+            <h1>RTFM</h1>
             <form onSubmit={this.handleSubmit}>
               <input 
               type="text" 
@@ -90,3 +144,4 @@ class App extends Component {
 }
 
 export default App;
+*/
