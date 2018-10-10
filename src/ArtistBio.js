@@ -28,11 +28,12 @@ class ArtistBio extends Component {
 		if (this.state.artists === null){
 			return "loading";
 		}
+		const regex = /<a.+a>/g;
 		console.log("artistBio",this.props.artistName)
 		return(
 			<div>
 				<h3>{this.state.artists.name}</h3>
-				<p>{this.state.artists.bio.summary}</p>
+				<p>{this.state.artists.bio.summary.replace(regex, '')}</p>
 				<img src={this.state.artists.image[3]["#text"]} alt="img" />
 			</div>
 		)
