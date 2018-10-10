@@ -7,7 +7,7 @@ import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
 import SimilarArtists from './SimilarArtists';
 import ArtistGetInfo from './ArtistGetInfo';
 import TopTrack from './TopTrack';
-import MusicPlayer from './MusicPlayer';
+import Tracks from './Tracks';
 
 import './App.css';
 
