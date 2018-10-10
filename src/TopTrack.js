@@ -16,7 +16,7 @@ class TopTrack extends Component {
     	return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
   	}
 
-	  componentDidMount(){
+	componentDidMount(){
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
 			.then(resp => this.setState({tracks : resp.toptracks.track}))
