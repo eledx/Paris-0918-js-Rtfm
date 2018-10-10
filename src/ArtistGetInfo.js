@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import LoadSpinner from './LoadSpinner';
 
 class ArtistGetInfo extends Component {
 	constructor(props){
@@ -15,7 +15,7 @@ class ArtistGetInfo extends Component {
 		this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getInfo';
-		this.artistName = 'The Kinks';
+		this.artistName = 'manu chao';
 		this.limit = '1';
 		return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
@@ -38,16 +38,14 @@ class ArtistGetInfo extends Component {
 	}
 
 	render() {
-		if (this.state.artists === null){
-			return "loading";
+		if (this.state.artists === null || this.state.concert === null){
+			return (<LoadSpinner/>);
 		}
-		if (this.state.concert === null){
-			return "loading";
-		}
+		const regex = /<a.+a>/g;
 		return (
 			<div>
 				<h3>{this.state.artists.name}</h3>
-				<p>{this.state.artists.bio.summary}</p>
+				<p>{this.state.artists.bio.summary.replace(regex, '')}</p>
 				<img src={this.state.artists.image[3]["#text"]} alt="img" />
 				<p>Next concert in {this.state.concert[0].venue.city}, {this.state.concert[0].venue.country}</p>
 			</div>

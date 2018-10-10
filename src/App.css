@@ -1,3 +1,22 @@
+
+@font-face {
+  font-family: 'Open+Sans';
+  src: url('https://fonts.googleapis.com/css');
+
+  font-family: 'maiden';
+  src: url('./font/maiden.ttf');
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+h1 {
+  font-family: 'maiden';
+  font-size: 5rem;
+}
+
 .App {
   text-align: center;
 }
