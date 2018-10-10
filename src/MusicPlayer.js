@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import LoadSpinner from './LoadSpinner';
 
 class MusicPlayer extends Component {
 	constructor(props){
@@ -8,8 +8,8 @@ class MusicPlayer extends Component {
   	}
 
 	requestUrlApi(){
-		this.proxy = `https://fc87ae8a.ngrok.io`;
-		this.artistName = '';
+		this.proxy = `https://6fd6ffbe.ngrok.io`;
+		this.artistName = 'Disturbed';
 		this.limit = '10';
     	return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
   	}
@@ -24,7 +24,7 @@ class MusicPlayer extends Component {
 	render() {
 		console.log(this.state);
         if(this.state.tracks === null){
-            return "loading";
+            return (<LoadSpinner/>);
         }
 		return (
 			<div>

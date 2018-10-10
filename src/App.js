@@ -5,6 +5,7 @@ import ArtistGetInfo from './ArtistGetInfo';
 import TopTrack from './TopTrack';
 import MusicPlayer from './MusicPlayer'
 import Autocompletion from './Autocompletion';
+import LoadSpinner from './LoadSpinner';
 import './App.css';
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
                 <Route path="/autocompletion" component={Autocompletion} />
             </Switch>
           </header>
+          <LoadSpinner/>
         </div>
       </BrowserRouter>
     );
