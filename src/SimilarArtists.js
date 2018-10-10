@@ -4,7 +4,10 @@ import React, { Component } from 'react';
 class SimilarArtists extends Component {
 	constructor(props){
     	super(props);
-    	this.state = { artists : [] };
+    	this.state = { 
+			artists : null,
+			artistInfo : null
+		};
   	}
 
 	requestUrlApi(artist){
@@ -19,16 +22,25 @@ class SimilarArtists extends Component {
 		fetch(this.requestUrlApi(this.props.artistInput))
 			.then(resp => resp.json())
 			.then(resp => this.setState({artists : resp.similarartists.artist}))
+		fetch(`http://audioscrobbler.com/2.0/?method=artist.getInfo&artist=${this.props.artistInput}&limit=1&api_key=af05581a38f69802ba020346115c8834&format=json`)
+			.then(resp => resp.json())
+			.then(resp => this.setState({artistInfo : resp.artist}))
 	}
 
 	render() {
 		console.log('SimilarArtist.js', this.props.artistInput)
+		if(this.state.artistInfo === null)
+			return "loading"
+		if(this.state.artistInfo === null)
+			return "loading"
 		return (
 			<div>
+				<h2>{this.state.artistInfo.name}</h2>
+				<img src={this.state.artistInfo.image[3]["#text"]} alt ="img" />
 				{this.state.artists.map(
 					(element, i) =>
 						<div key={i}>
-							<h2>{element.name}</h2>
+							<h3>{element.name}</h3>
 							<img src={element.image[3]["#text"]} alt="img"></img>
 						</div>
 				)}
