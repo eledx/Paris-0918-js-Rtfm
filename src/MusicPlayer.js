@@ -24,7 +24,7 @@ class MusicPlayer extends Component {
 	render() {
 		console.log(this.state);
         if(this.state.tracks === null){
-            return "loading";
+            return "loading ...";
         }
 		return (
 			<div>

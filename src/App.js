@@ -1,17 +1,84 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
-import ListSimilarArtists from './ListSimilarArtists';
-import ArtistGetInfo from './ArtistGetInfo';
-import TopTrack from './TopTrack';
-import MusicPlayer from './MusicPlayer'
-import Autocompletion from './Autocompletion';
+import Header from './Header'
+import Body from './Body'
+import Footer from './Footer';
 import './App.css';
+
 
 class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <div>
+        <Header />
+        <Body />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
+import ListSimilarArtists from './ListSimilarArtists';
+import ArtistGetInfo from './ArtistGetInfo';
+import TopTrack from './TopTrack';
+import MusicPlayer from './MusicPlayer'
+import Autocompletion from './Autocompletion';*/
+
+/*</div>
+<BrowserRouter>
         <div className="App">
           <header className="App-header">
             <NavLink exact className="navbarlink" to="/listsimilarartists"> ListSimilarArtists </NavLink>
@@ -28,9 +95,4 @@ class App extends Component {
             </Switch>
           </header>
         </div>
-      </BrowserRouter>
-    );
-  }
-}
-
-export default App;
+      </BrowserRouter>*/

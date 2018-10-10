@@ -1,0 +1,21 @@
+p
+{
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 15px;
+}
+
+.footer
+{
+    display: flex; 
+
+}
+   
+@media screen and (min-width: 0px) and (max-width: 767px){ 
+        .footer{ 
+            flex-direction: column;
+    }
+        .bar{
+           margin-left: 25%;
+           margin-top: 175px;
+        }
+}
