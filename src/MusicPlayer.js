@@ -9,8 +9,8 @@ class MusicPlayer extends Component {
 
 	requestUrlApi(){
 		this.proxy = `https://6fd6ffbe.ngrok.io`;
-		this.artistName = 'Disturbed';
-		this.limit = '10';
+		this.artistName = this.props.artistName;
+		this.limit = '3';
     	return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
   	}
 
@@ -22,7 +22,7 @@ class MusicPlayer extends Component {
 	}
 
 	render() {
-		console.log(this.state);
+		console.log("MusicPlayer",this.props.artistName)
         if(this.state.tracks === null){
             return (<LoadSpinner/>);
         }

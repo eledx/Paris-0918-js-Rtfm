@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-
+import FicheArtist from './FicheArtist';
 
 class SimilarArtists extends Component {
 	constructor(props){
     	super(props);
     	this.state = { 
 			artists : null,
-			artistInfo : null
+			artistInfo : null,
+			renderFicheArtist : false
 		};
   	}
 
@@ -27,21 +28,29 @@ class SimilarArtists extends Component {
 			.then(resp => this.setState({artistInfo : resp.artist}))
 	}
 
+	handleClick = () => {
+		this.setState({renderFicheArtist : true});
+	}
+
 	render() {
 		console.log('SimilarArtist.js', this.props.artistInput)
-		if(this.state.artistInfo === null)
+		if(this.state.artists === null)
 			return "loading"
 		if(this.state.artistInfo === null)
 			return "loading"
+		if(this.state.renderFicheArtist === true)
+			return <FicheArtist artistName={this.state.artistInfo.name} />
+
 		return (
 			<div>
-				<h2>{this.state.artistInfo.name}</h2>
+				<h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2>
 				<img src={this.state.artistInfo.image[3]["#text"]} alt ="img" />
 				{this.state.artists.map(
 					(element, i) =>
 						<div key={i}>
-							<h3>{element.name}</h3>
+							<h3 onClick={this.handleClick}>{element.name}</h3>
 							<img src={element.image[3]["#text"]} alt="img"></img>
+							<button> + </button>
 						</div>
 				)}
 			</div>

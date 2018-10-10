@@ -3,7 +3,6 @@ import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
 import SimilarArtists from './SimilarArtists';
 import ArtistGetInfo from './ArtistGetInfo';
 import TopTrack from './TopTrack';
-import MusicPlayer from './MusicPlayer'
 import './App.css';
 
 class App extends Component {
@@ -68,12 +67,10 @@ class App extends Component {
               </div>
             <NavLink className="navbarlink" to="/artistgetinfo"> ArtistGetInfo </NavLink>
             <NavLink className="navbarlink" to="/toptrack"> TopTrack </NavLink>
-            <NavLink className="navbarlink" to="/musicplayer"> MusicPlayer </NavLink>
             <Switch>
-                <Route exact path="/similarartists" component={SimilarArtists} />
+                <Route path="/similarartists" component={SimilarArtists} />
                 <Route path="/artistgetinfo" component={ArtistGetInfo} />
                 <Route path="/toptrack" component={TopTrack} />
-                <Route path="/musicplayer" component={MusicPlayer} />
             </Switch>
           </header>
         </div>
