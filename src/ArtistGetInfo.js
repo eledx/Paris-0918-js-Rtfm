@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import LoadSpinner from './LoadSpinner';
 
 class ArtistGetInfo extends Component {
 	constructor(props){
@@ -38,11 +38,8 @@ class ArtistGetInfo extends Component {
 	}
 
 	render() {
-		if (this.state.artists === null){
-			return "loading";
-		}
-		if (this.state.concert === null){
-			return "loading";
+		if (this.state.artists === null || this.state.concert === null){
+			return (<LoadSpinner/>);
 		}
 		return (
 			<div>
