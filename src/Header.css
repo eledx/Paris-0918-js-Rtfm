@@ -1,0 +1,14 @@
+header
+{
+    display: flex;
+    justify-content: flex-start;
+    border: 1px black solid;
+}
+
+.logo
+{
+    width: 100px;
+    height: 100px;
+}
+
+

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ArtistBio from './ArtistBio';
 import ArtistConcerts from './ArtistConcerts';
-import MusicPlayer from './MusicPlayer';
+import Tracks from './Tracks';
 
 
 class FicheArtist extends Component {
@@ -12,7 +12,7 @@ class FicheArtist extends Component {
 			<div>
 				<ArtistBio artistName={this.props.artistName}/>
 				<ArtistConcerts artistName={this.props.artistName}/>
-				<MusicPlayer artistName={this.props.artistName}/>
+				{/* <Tracks artistName={this.props.artistName}/> */}
 			</div>
 		)
 	}

@@ -43,16 +43,19 @@ class SimilarArtists extends Component {
 
 		return (
 			<div>
-				<h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2>
-				<img src={this.state.artistInfo.image[3]["#text"]} alt ="img" />
-				{this.state.artists.map(
-					(element, i) =>
-						<div key={i}>
-							<h3 onClick={this.handleClick}>{element.name}</h3>
-							<img src={element.image[3]["#text"]} alt="img"></img>
-							<button> + </button>
-						</div>
-				)}
+				{/* {this.props.artistInput !== null && ( */}
+					<div>
+						<h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2>
+						<img src={this.state.artistInfo.image[3]["#text"]} alt ="img" />
+						{this.state.artists.map(
+							(element, i) =>
+								<div key={i}>
+									<h3>{element.name}</h3>
+									<img src={element.image[3]["#text"]} alt="img"></img>
+								</div>
+						)}
+					</div>
+				{/* )} */}
 			</div>
 		);
 	}
