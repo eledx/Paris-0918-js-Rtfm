@@ -1,0 +1,9 @@
+.bar 
+{
+  position: absolute;
+  z-index: 600;
+  margin-top: 5%;
+  margin-left: 40%;
+  background-color: transparent;
+  border: 1px transparent solid;
+}

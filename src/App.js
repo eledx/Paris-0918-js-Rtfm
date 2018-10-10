@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+
+import Header from './Header'
+import Body from './Body'
+import Footer from './Footer';
 import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
 import SimilarArtists from './SimilarArtists';
 import ArtistGetInfo from './ArtistGetInfo';
 import TopTrack from './TopTrack';
-import MusicPlayer from './MusicPlayer'
+import MusicPlayer from './MusicPlayer';
+
 import './App.css';
+
 
 class App extends Component {
 
@@ -50,7 +56,76 @@ class App extends Component {
       return <SimilarArtists artistInput={this.state.finalSearch} />
     }
     return (
-      <BrowserRouter>
+      <div>
+        <Header />
+        <Body />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
+import ListSimilarArtists from './ListSimilarArtists';
+import ArtistGetInfo from './ArtistGetInfo';
+import TopTrack from './TopTrack';
+import MusicPlayer from './MusicPlayer'
+import Autocompletion from './Autocompletion';*/
+
+/*</div>
+<BrowserRouter>
         <div className="App">
             <header className="App-header">
             <h1>RTFM</h1>
@@ -78,9 +153,4 @@ class App extends Component {
             </Switch>
           </header>
         </div>
-      </BrowserRouter>
-    );
-  }
-}
-
-export default App;
+      </BrowserRouter>*/
