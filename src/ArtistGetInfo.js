@@ -15,7 +15,7 @@ class ArtistGetInfo extends Component {
 		this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getInfo';
-		this.artistName = 'manu chao';
+		this.artistName = 'disturbed';
 		this.limit = '1';
 		return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
