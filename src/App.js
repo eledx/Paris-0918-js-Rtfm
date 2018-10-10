@@ -53,6 +53,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
             <header className="App-header">
+            <h1>Read The Fucking Manual</h1>
             <form onSubmit={this.handleSubmit}>
               <input 
               type="text" 
