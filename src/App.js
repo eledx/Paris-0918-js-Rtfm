@@ -56,31 +56,32 @@ class App extends Component {
 
   render() {
     //console.log(this.state) 
+
     if(this.state.finalSearch !== null)
       return <SimilarArtists artistInput={this.state.finalSearch} />
     return (
       <div>
         <Header />
         <BrowserRouter>
-        <div className="App">
-            <header className="App-header">
-            <h1>READ THE FUCKING MANUAL</h1>
-            <form onSubmit={this.handleSubmit}>
-              <input 
-              type="text" 
-              placeholder="Votre artiste"
-              value={this.state.userInput}
-              onChange={this.searchBarDisplay}/>
-              <button>Search</button>
-            </form>
-            <div>
-              {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
-            ))}
-              </div>
-          </header>
-          {/* <SimilarArtists artistInput={this.state.finalSearch} /> */}
-        </div>
-      </BrowserRouter>
+          <div className="App">
+              <header className="App-header">
+                <h1>READ THE FUCKING MANUAL</h1>
+                <form onSubmit={this.handleSubmit}>
+                  <input 
+                  type="text" 
+                  placeholder="Votre artiste"
+                  value={this.state.userInput}
+                  onChange={this.searchBarDisplay}/>
+                  <button>Search</button>
+                </form>
+                <div>
+                  {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
+                  ))}
+                  </div>
+              </header>
+            {/* <SimilarArtists artistInput={this.state.finalSearch} /> */}
+          </div>
+        </BrowserRouter>
         <Footer />
       </div>
     );

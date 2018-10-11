@@ -5,30 +5,45 @@ class ArtistConcerts extends Component {
 	constructor(props){
 		super(props);
 		this.state = { 
-			concert : []
+			id : null,
+			concert : null
 		};
 	}
 
-	apiConcerts(){
+	apiConcertsByName(){
 		this.name = this.props.artistName;
-		console.log(this.name);
-		return `https://rest.bandsintown.com/artists/${this.name}/events?app_id=2a68c8b9f4bcbc7eecd0e2efdd7cac51&date=upcoming`;
+		return `https://api.songkick.com/api/3.0/search/artists.json?apikey=u7XCPTAHztwOPCRa&query=${this.props.artistName}`;
+	}
+
+	apiConcertsWithId(id){
+		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa`;
 	}
 
 	componentDidMount(){
-		fetch(this.apiConcerts())
+		fetch(this.apiConcertsByName())
 			.then(resp => resp.json())
-			.then(resp => this.setState({concert : resp}))
+			.then(resp => {
+				const id = resp.resultsPage.results.artist[0].id;
+				this.setState({id});
+				fetch(this.apiConcertsWithId(id))
+				.then(resp => resp.json())
+				.then(resp => this.setState({concert : resp.resultsPage}))
+				.then(resp => console.log("2e fetch",this.state.concert.results.event[0].displayName))
+			});
+			//.then(resp => console.log("1er fetch",this.state.id))
+			
 	}
 
-	render()
-		{console.log("artistConcerts",this.props.artistName)
-		if (this.state.concert.length === 0){
-			return "loading..";
+	render() {
+		if(this.state.concert === null){
+			return "loading...";
 		}
+		// if(this.state.id === null){
+		// 	return "loading...";
+		// }
 		return(
 			<div>
-				<p>Next concert in {this.state.concert[0].venue.city}, {this.state.concert[0].venue.country}</p>
+				<p>Next concert : {this.state.concert.results.event[0].displayName}</p>
 			</div>
 		)
 	}

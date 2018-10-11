@@ -22,7 +22,6 @@ class ArtistBio extends Component {
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
 			.then(resp =>  this.setState({artists : resp.artist}))
-			.then(resp => console.log(this.state.artists.bio.summary))
 	}
 	render(){
 		if (this.state.artists === null){

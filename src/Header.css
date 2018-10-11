@@ -5,6 +5,11 @@ header
     border: 1px black solid;
 }
 
+.headerH1{
+    color: black;
+    margin-top: 35px;
+}
+
 .logo
 {
     width: 100px;

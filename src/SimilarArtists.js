@@ -7,7 +7,8 @@ class SimilarArtists extends Component {
     	this.state = { 
 			artists : null,
 			artistInfo : null,
-			renderFicheArtist : false
+			renderFicheArtist : false,
+			renderFicheArtistSimilar : false
 		};
   	}
 
@@ -31,6 +32,9 @@ class SimilarArtists extends Component {
 	handleClick = () => {
 		this.setState({renderFicheArtist : true});
 	}
+	handleClickSimilar = () => {
+		this.setState({renderFicheArtistSimilar : true})
+	}
 
 	render() {
 		console.log('SimilarArtist.js', this.props.artistInput)
@@ -40,6 +44,8 @@ class SimilarArtists extends Component {
 			return "loading"
 		if(this.state.renderFicheArtist === true)
 			return <FicheArtist artistName={this.state.artistInfo.name} />
+		// if(this.state.handleClickSimilar === true)
+		// 	return <FicheArtist artistName={this.state.artists.map()}
 
 		return (
 			<div>
@@ -51,6 +57,7 @@ class SimilarArtists extends Component {
 							(element, i) =>
 								<div key={i}>
 									<h3>{element.name}</h3>
+									{/* <h3 onClick={this.handleClickSimilar}>{element.name}</h3> */}
 									<img src={element.image[3]["#text"]} alt="img"></img>
 								</div>
 						)}
