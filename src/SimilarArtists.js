@@ -7,7 +7,9 @@ class SimilarArtists extends Component {
     	this.state = { 
 			artists : null,
 			artistInfo : null,
-			renderFicheArtist : false
+			renderFicheArtist : false,
+			renderFicheArtistSimilar : false,
+			index: 0
 		};
   	}
 
@@ -32,7 +34,13 @@ class SimilarArtists extends Component {
 		this.setState({renderFicheArtist : true});
 	}
 
+	handleClickSimilar = (e) => {
+		this.setState({renderFicheArtistSimilar: true});
+		this.setState({index: e.target.id});
+	}	
+
 	render() {
+
 		console.log('SimilarArtist.js', this.props.artistInput)
 		if(this.state.artists === null)
 			return "loading"
@@ -40,6 +48,9 @@ class SimilarArtists extends Component {
 			return "loading"
 		if(this.state.renderFicheArtist === true)
 			return <FicheArtist artistName={this.state.artistInfo.name} />
+		if(this.state.renderFicheArtistSimilar === true && this.state.index !== null)
+			return <FicheArtist artistName={this.state.artists[this.state.index].name} />
+
 
 		return (
 			<div>
@@ -50,7 +61,7 @@ class SimilarArtists extends Component {
 						{this.state.artists.map(
 							(element, i) =>
 								<div key={i}>
-									<h3>{element.name}</h3>
+									<h3 onClick={this.handleClickSimilar} id={i}>{element.name}</h3>
 									<img src={element.image[3]["#text"]} alt="img"></img>
 								</div>
 						)}
