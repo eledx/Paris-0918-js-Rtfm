@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import LoadSpinner from './LoadSpinner';
 
 class ArtistBio extends Component {
 	constructor(props){
@@ -25,7 +25,7 @@ class ArtistBio extends Component {
 	}
 	render(){
 		if (this.state.artists === null){
-			return "loading";
+			return <LoadSpinner/>;
 		}
 		const regex = /<a.+a>/g;
 		console.log("artistBio",this.props.artistName)

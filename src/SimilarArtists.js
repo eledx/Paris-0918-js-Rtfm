@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FicheArtist from './FicheArtist';
+import LoadSpinner from './LoadSpinner';
 
 class SimilarArtists extends Component {
 	constructor(props){
@@ -51,10 +52,8 @@ class SimilarArtists extends Component {
 	render() {
 
 		console.log('SimilarArtist.js', this.props.artistInput)
-		if(this.state.artists === null)
-			return "loading"
-		if(this.state.artistInfo === null)
-			return "loading"
+		if(this.state.artists === null || this.state.artistInfo === null)
+			return <LoadSpinner/>;
 		if(this.state.renderFicheArtist === true)
 			return <FicheArtist artistName={this.state.artistInfo.name} />
 		if(this.state.renderFicheArtistSimilar === true && this.state.index !== null)

@@ -5,7 +5,7 @@ import MusicPlayer from 'react-responsive-music-player'
 class Tracks extends Component {
 	constructor(props){
     	super(props);
-    	this.state = { tracks : null,};
+    	this.state = { tracks : null};
   	}
 
 	requestUrlApi(){

@@ -23,9 +23,13 @@ class App extends Component {
   // afficher le nom d'artiste dans la searchbar & appeler l'autocomplétion
   searchBarDisplay = (event) => {
     this.setState({userInput: event.target.value})
-    this.requestAutocompletion(event.target.value)
-    this.setState({ShowAutocompletion:true})
-    console.log('searchDisplay', this.state)
+    if(event.target.value.length !== 0){
+      this.requestAutocompletion(event.target.value)
+      this.setState({ShowAutocompletion:true})
+      console.log('searchDisplay', this.state)
+    }
+    else
+      this.setState({ShowAutocompletion: false})
   }
 
   //  Appel de l'API pour utiliser la méthode d'autocomplétion
@@ -55,7 +59,6 @@ class App extends Component {
 
   render() {
     //console.log(this.state) 
-
     if(this.state.finalSearch !== null)
       return <SimilarArtists artistInput={this.state.finalSearch} />
     return (

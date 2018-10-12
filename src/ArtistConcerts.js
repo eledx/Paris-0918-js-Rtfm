@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import LoadSpinner from './LoadSpinner';
 
 class ArtistConcerts extends Component {
 	constructor(props){
@@ -16,7 +16,7 @@ class ArtistConcerts extends Component {
 	}
 
 	apiConcertsWithId(id){
-		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa`;
+		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa&perpage=10`;
 	}
 
 	componentDidMount(){
@@ -33,9 +33,9 @@ class ArtistConcerts extends Component {
 
 	render() {
 		if(this.state.concert === null)
-			return "loading...";
+			return <LoadSpinner/>;
 		if(Object.getOwnPropertyNames(this.state.concert).length === 0){
-			return "no concerts";
+			return "No upcoming concerts";
 		}
 		return(
 
