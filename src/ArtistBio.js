@@ -31,7 +31,8 @@ class ArtistBio extends Component {
 		console.log("artistBio",this.props.artistName)
 		return(
 			<div>
-				<h3>{this.state.artists.name}</h3>
+				<h2>{this.state.artists.name}</h2>
+				<h3>Biography</h3>
 				<p>{this.state.artists.bio.summary.replace(regex, '')}</p>
 				<img src={this.state.artists.image[3]["#text"]} alt="img" />
 			</div>

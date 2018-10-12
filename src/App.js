@@ -66,7 +66,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
               <header className="App-header">
-                <h1>READ THE FUCKING MANUAL</h1>
+                <h1>RTFM</h1>
                 <form onSubmit={this.handleSubmit}>
                   <input 
                   type="text" 

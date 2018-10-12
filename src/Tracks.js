@@ -30,7 +30,6 @@ class Tracks extends Component {
         }
         this.state.tracks.filter((e)=>{
 	        if(e.artist.name.includes(this.props.artistName)) {
-	        	console.log('luls')
 	        	playlist.push({
 	        		url: e.preview, 
 	        		cover: e.album.cover_medium, 
@@ -38,6 +37,7 @@ class Tracks extends Component {
 	        		artist: [e.artist.name]
         		})
 	        }	
+	        return playlist;
         });
 
         if(playlist.length === 0)
