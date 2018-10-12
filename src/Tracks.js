@@ -28,14 +28,20 @@ class Tracks extends Component {
         if(this.state.tracks === null){
             return (<LoadSpinner/>);
         }
-        playlist = this.state.tracks.map((e)=>{
-        	return {
-        		url: e.preview, 
-        		cover: e.album.cover_medium, 
-        		title: e.title, 
-        		artist: [e.artist.name]
-        	}
+        this.state.tracks.filter((e)=>{
+	        if(e.artist.name.includes(this.props.artistName)) {
+	        	console.log('luls')
+	        	playlist.push({
+	        		url: e.preview, 
+	        		cover: e.album.cover_medium, 
+	        		title: e.title, 
+	        		artist: [e.artist.name]
+        		})
+	        }	
         });
+
+        if(playlist.length === 0)
+        	return `Sorry, we haven't any tracks from ${this.props.artistName}`
 
 		return (
 			<div>
