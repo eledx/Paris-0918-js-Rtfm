@@ -70,7 +70,7 @@ class App extends Component {
                 <form onSubmit={this.handleSubmit}>
                   <input 
                   type="text" 
-                  placeholder="Votre artiste"
+                  placeholder="Your artist"
                   value={this.state.userInput}
                   onChange={this.searchBarDisplay}/>
                   <button>Search</button>

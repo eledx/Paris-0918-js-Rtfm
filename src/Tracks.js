@@ -45,7 +45,6 @@ class Tracks extends Component {
 
 		return (
 			<div>
-				<h2>Morceaux</h2>
 				<MusicPlayer playlist={playlist} />
 			</div>
 		);

@@ -9,8 +9,11 @@ class FicheArtist extends Component {
 		console.log("ficheArtist.js", this.props.artistName)
 		return(
 			<div>
+				<h2>Biography</h2>
 				<ArtistBio artistName={this.props.artistName} />
+				<h2>Upcoming Concerts</h2>
 				<ArtistConcerts artistName={this.props.artistName} />
+				<h2>Some Tracks</h2>
 				<Tracks artistName={this.props.artistName} />
 			</div>
 		)

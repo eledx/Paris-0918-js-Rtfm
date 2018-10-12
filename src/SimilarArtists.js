@@ -66,7 +66,7 @@ class SimilarArtists extends Component {
 					<div>
 						<h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2>
 						<img src={this.state.artistInfo.image[3]["#text"]} alt ="img" />
-						<h2> Artistes Similaires:</h2>
+						<h2> Similar Artists:</h2>
 						{this.state.artists.map(
 							(element, i) =>
 								<div key={i}>
