@@ -8,7 +8,9 @@ class SimilarArtists extends Component {
 			artists : null,
 			artistInfo : null,
 			renderFicheArtist : false,
-			renderFicheArtistSimilar : false
+			renderFicheArtistSimilar : false,
+			index: 0,
+			renderSimilarArtists: false
 		};
   	}
 
@@ -36,7 +38,18 @@ class SimilarArtists extends Component {
 		this.setState({renderFicheArtistSimilar : true})
 	}
 
+	handleClickSimilar = (e) => {
+		this.setState({renderFicheArtistSimilar: true});
+		this.setState({index: e.target.id});
+	}
+
+	handleClickListSimilar = (e) => {
+		this.setState({renderSimilarArtists: true})
+		this.setState({index : e.target.id})
+	}
+
 	render() {
+
 		console.log('SimilarArtist.js', this.props.artistInput)
 		if(this.state.artists === null)
 			return "loading"
@@ -44,25 +57,25 @@ class SimilarArtists extends Component {
 			return "loading"
 		if(this.state.renderFicheArtist === true)
 			return <FicheArtist artistName={this.state.artistInfo.name} />
-		// if(this.state.handleClickSimilar === true)
-		// 	return <FicheArtist artistName={this.state.artists.map()}
+		if(this.state.renderFicheArtistSimilar === true && this.state.index !== null)
+			return <FicheArtist artistName={this.state.artists[this.state.index].name} />
+		if(this.state.renderSimilarArtists === true && this.state.index !== null)
+			return <SimilarArtists artistInput={this.state.artists[this.state.index].name} />
 
 		return (
 			<div>
-				{/* {this.props.artistInput !== null && ( */}
 					<div>
 						<h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2>
 						<img src={this.state.artistInfo.image[3]["#text"]} alt ="img" />
 						{this.state.artists.map(
 							(element, i) =>
 								<div key={i}>
-									<h3>{element.name}</h3>
-									{/* <h3 onClick={this.handleClickSimilar}>{element.name}</h3> */}
+									<h3 onClick={this.handleClickSimilar} id={i}>{element.name}</h3>
 									<img src={element.image[3]["#text"]} alt="img"></img>
+									<button onClick={this.handleClickListSimilar} id={i}> + </button>
 								</div>
 						)}
 					</div>
-				{/* )} */}
 			</div>
 		);
 	}

@@ -18,7 +18,7 @@ h1 {
 }
 
 .App-header {
-  background-image: url("concert2.jpeg");
+  background-color: #282c34;
   height: 100vh;
   display: flex;
   flex-direction: column;

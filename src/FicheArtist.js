@@ -12,7 +12,7 @@ class FicheArtist extends Component {
 			<div>
 				<ArtistBio artistName={this.props.artistName}/>
 				<ArtistConcerts artistName={this.props.artistName}/>
-				{/* <Tracks artistName={this.props.artistName}/> */}
+				<Tracks artistName={this.props.artistName}/>
 			</div>
 		)
 	}

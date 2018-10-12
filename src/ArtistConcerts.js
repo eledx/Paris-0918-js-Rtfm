@@ -27,25 +27,25 @@ class ArtistConcerts extends Component {
 				this.setState({id});
 				fetch(this.apiConcertsWithId(id))
 				.then(resp => resp.json())
-				.then(resp => this.setState({concert : resp.resultsPage}))
-				.then(resp => console.log("2e fetch",this.state.concert.results.event[0].displayName))
+				.then(resp => this.setState({concert : resp.resultsPage.results}))
 			});
-			//.then(resp => console.log("1er fetch",this.state.id))
-			
 	}
 
 	render() {
-		if(this.state.concert === null){
+		if(this.state.concert === null)
 			return "loading...";
+		if(Object.getOwnPropertyNames(this.state.concert).length === 0){
+			return "no concerts";
 		}
-		// if(this.state.id === null){
-		// 	return "loading...";
-		// }
 		return(
+
 			<div>
-				<p>Next concert : {this.state.concert.results.event[0].displayName}</p>
+				<p>Next concert : {this.state.concert.event[0].displayName}</p>
+				<p>Next concert : {this.state.concert.event[1].displayName}</p>
+				<p>Next concert : {this.state.concert.event[2].displayName}</p>
 			</div>
 		)
+
 	}
 }
 

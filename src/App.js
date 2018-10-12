@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Header from './Header';
 import Footer from './Footer';
 import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
@@ -61,7 +60,6 @@ class App extends Component {
       return <SimilarArtists artistInput={this.state.finalSearch} />
     return (
       <div>
-        <Header />
         <BrowserRouter>
           <div className="App">
               <header className="App-header">
@@ -80,6 +78,9 @@ class App extends Component {
                   </div>
               </header>
             {/* <SimilarArtists artistInput={this.state.finalSearch} /> */}
+          <Switch>
+            <Route path="/similarArtists" component={SimilarArtists}/>
+          </Switch>
           </div>
         </BrowserRouter>
         <Footer />
@@ -89,48 +90,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-/*import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
-import ListSimilarArtists from './ListSimilarArtists';
-import ArtistGetInfo from './ArtistGetInfo';
-import TopTrack from './TopTrack';
-import MusicPlayer from './MusicPlayer'
-import Autocompletion from './Autocompletion';*/
-
-/*</div>
-<BrowserRouter>
-        <div className="App">
-            <header className="App-header">
-            <h1>RTFM</h1>
-            <form onSubmit={this.handleSubmit}>
-              <input 
-              type="text" 
-              placeholder="Votre artiste"
-              value={this.state.userInput}
-              onChange={this.searchBarDisplay}/>
-              <button>Search</button>
-            </form>
-            <div>
-              {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <p key={i} onClick={this.handleArtistClick}>{element.name}</p>
-            ))}
-              </div>
-            <NavLink className="navbarlink" to="/artistgetinfo"> ArtistGetInfo </NavLink>
-            <NavLink className="navbarlink" to="/toptrack"> TopTrack </NavLink>
-            <Switch>
-                <Route path="/similarartists" component={SimilarArtists} />
-                <Route path="/artistgetinfo" component={ArtistGetInfo} />
-                <Route path="/toptrack" component={TopTrack} />
-            </Switch>
-          </header>
-          <SimilarArtists artistInput={this.state.finalSearch} />
-        </div>
-      </BrowserRouter>
-    );
-    }
-
-
-}
-
-export default App;
-*/
