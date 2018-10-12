@@ -38,11 +38,17 @@ class ArtistConcerts extends Component {
 		if(Object.getOwnPropertyNames(this.state.concert).length === 0){
 			return "No upcoming concerts";
 		}
+
+		console.log(this.state.concert)
 		return(
 			<div>
 				{this.state.concert.event.map(
 					(element, index) =>
-						<p key={index}>Next concert : {element.displayName}</p>
+						<div>
+						<p key={index}>
+						Next concert : {element.displayName} at {element.location.city}</p>
+						<a href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank">GOOGLE MAP</a>
+						</div>
 				)}
 			</div>
 		)
