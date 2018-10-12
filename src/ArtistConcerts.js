@@ -16,7 +16,7 @@ class ArtistConcerts extends Component {
 	}
 
 	apiConcertsWithId(id){
-		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa`;
+		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa&per_page=3`;
 	}
 
 	componentDidMount(){
@@ -38,11 +38,11 @@ class ArtistConcerts extends Component {
 			return "no concerts";
 		}
 		return(
-
 			<div>
-				<p>Next concert : {this.state.concert.event[0].displayName}</p>
-				<p>Next concert : {this.state.concert.event[1].displayName}</p>
-				<p>Next concert : {this.state.concert.event[2].displayName}</p>
+				{this.state.concert.event.map(
+					(element, index) =>
+						<p key={index}>Next concert : {element.displayName}</p>
+				)}
 			</div>
 		)
 
