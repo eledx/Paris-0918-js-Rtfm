@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import LoadSpinner from './LoadSpinner';
 
+import { Grid, Typography } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+	palette:{
+		primary: { main: '#FFFFFF'},
+		secondary: { main: '#B32525'},
+		background : {paper: '#000000'},
+	},
+	
+  });
+
+
+const stylesArtist = withStyles => ({
+	
+})
+
+
 class ArtistBio extends Component {
 	constructor(props){
 		super(props);
@@ -28,16 +46,35 @@ class ArtistBio extends Component {
 			return <LoadSpinner/>;
 		}
 		const regex = /<a.+a>/g;
-		console.log("artistBio",this.props.artistName)
+
+
+		var myClassNammes = 'gallery diapositive';
+		
+
+		//console.log("artistBio",this.props.artistName)
 		return(
-			<div>
-				<h2>{this.state.artists.name}</h2>
-				<h3>Biography</h3>
-				<p>{this.state.artists.bio.summary.replace(regex, '')}</p>
-				<img src={this.state.artists.image[3]["#text"]} alt="img" />
-			</div>
+			
+/* Mettre u box shadow a l'image box-shadow: 8px 8px 0px #c5c5c5; */
+			<MuiThemeProvider theme={theme}>
+
+				
+
+			<Grid container>
+				<Grid item xs={8}>
+					<Typography variant="p" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
+				</Grid>
+
+
+				<Grid item xs={4} className={myClassNammes}>
+					<a href={this.state.artists.name} title={this.state.artists.name}>
+						<img src={this.state.artists.image[3]["#text"]} alt={this.state.artists.name} title={this.state.artists.name} />
+					</a>
+				</Grid>
+			</Grid>
+				
+			</MuiThemeProvider>
 		)
 	}
 }
 
-export default ArtistBio;
+export default withStyles(stylesArtist)(ArtistBio);

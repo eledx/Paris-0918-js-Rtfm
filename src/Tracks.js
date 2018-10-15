@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import LoadSpinner from './LoadSpinner';
-import MusicPlayer from 'react-responsive-music-player'
+import MusicPlayer from 'react-responsive-music-player';
+
+import { Grid } from '@material-ui/core';
+
 
 class Tracks extends Component {
 	constructor(props){
@@ -44,9 +47,9 @@ class Tracks extends Component {
         	return `Sorry, we haven't any tracks from ${this.props.artistName}`
 
 		return (
-			<div>
+			<Grid item xs={12} justify="left">
 				<MusicPlayer playlist={playlist} />
-			</div>
+			</Grid>
 		);
 	}
 }
