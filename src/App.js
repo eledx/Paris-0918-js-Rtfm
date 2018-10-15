@@ -17,8 +17,6 @@ import SearchIcon from "@material-ui/icons/Search";
 const theme = createMuiTheme({
   palette:{
       primary: { main: '#FFFFFF'},
-      
-      
   },
   typography: { 
       fontFamily: 'Open Sans',
@@ -27,14 +25,19 @@ const theme = createMuiTheme({
 
 /* Style pour la barre de recherche */
 const styles = theme => ({
+  appbar:{
+    width: '75%',
+  },
+  toolbar:{
+    minHeight: 45,
+  },
 search: {
   position: "relative",
-
   marginLeft: 0,
   width: "100%",
 },
 searchIcon: {
-  width: theme.spacing.unit * 9,
+  width: 50,
   height: "100%",
   position: "absolute",
   pointerEvents: "none",
@@ -51,7 +54,7 @@ inputInput: {
   paddingTop: theme.spacing.unit,
   paddingRight: theme.spacing.unit,
   paddingBottom: theme.spacing.unit,
-  paddingLeft: theme.spacing.unit * 10,
+  paddingLeft: 60,
   transition: theme.transitions.create("width"),
   width: "100%",
 },
@@ -134,9 +137,9 @@ render() {
 
             <Header />
             
-            <Grid container justify='center' alignItems='center'>
-              <AppBar position="static">
-                <Toolbar>
+            <Grid container justify='center' alignItems='center' >
+              <AppBar position="static" className={classes.appbar}>
+                <Toolbar className={classes.toolbar}>
                   <div className={classes.search}>
                     <div className={classes.searchIcon}>
                       <SearchIcon />
