@@ -32,7 +32,6 @@ search: {
 
   marginLeft: 0,
   width: "100%",
-  
 },
 searchIcon: {
   width: theme.spacing.unit * 9,
@@ -121,8 +120,6 @@ render() {
   const { classes } = this.props;
   //Denition de la const pointer
   const pointer = {cursor: 'pointer'};
-
-
   if(this.state.finalSearch !== null)
     return <SimilarArtists artistInput={this.state.finalSearch} />
   return (
