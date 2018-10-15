@@ -2,15 +2,30 @@
 @font-face {
   font-family: 'Open+Sans';
   src: url('https://fonts.googleapis.com/css');
-
+}
+@font-face {
   font-family: 'maiden';
   src: url('./font/maiden.ttf');
 }
-
-body {
-  font-family: 'Open Sans', sans-serif;
+@font-face {
+  font-family: 'journal';
+  src: url('./font/journal.ttf');
+}
+@font-face {
+  font-family: 'metal';
+  src: url('./font/Metal_Lord.ttf');
 }
 
+.bgHome{
+  height: 100vh;
+  background: url('./img/band-silhouette.jpg') no-repeat center center;
+  background-size: cover;
+}
+/*
+h1 {
+  font-family: 'maiden', sans-serif !important;
+}*/
+/*
 h1 {
   font-family: 'maiden';
   font-size: 5rem;
@@ -26,5 +41,4 @@ h1 {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: red;
-}
-
+}*/
