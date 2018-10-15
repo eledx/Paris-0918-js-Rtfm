@@ -4,7 +4,7 @@ import Footer from './Footer';
 import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
 import SimilarArtists from './SimilarArtists';
 
-import './App.css';
+//import './App.css';
 
 
 class App extends Component {

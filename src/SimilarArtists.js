@@ -1,6 +1,35 @@
 import React, { Component } from 'react';
 import FicheArtist from './FicheArtist';
 import LoadSpinner from './LoadSpinner';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+//import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+
+
+	const styles = () =>({
+	    pictures: {
+		width: 300,
+		height: 300,
+	}
+	});
+	
+
+
+	const theme = createMuiTheme ({
+		palette : {
+		primary :{main: "#604C8D"},
+		
+		},
+		
+		typography : {
+		fontSize : 60,
+		fontFamily: "Maiden"},
+		
+		})
 
 class SimilarArtists extends Component {
 	constructor(props){
@@ -12,14 +41,14 @@ class SimilarArtists extends Component {
 			renderFicheArtistSimilar : false,
 			index: 0,
 			renderSimilarArtists: false
-		};
-  	}
+			};
+		}
 
 	requestUrlApi(artist){
     	this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getsimilar';
-		this.limit = '5';
+		this.limit = '4';
 		return `${this.apiBase}method=${this.method}&artist=${artist}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
 	
@@ -50,6 +79,8 @@ class SimilarArtists extends Component {
 	}
 
 	render() {
+        
+		
 
 		console.log('SimilarArtist.js', this.props.artistInput)
 		if(this.state.artists === null || this.state.artistInfo === null)
@@ -62,23 +93,48 @@ class SimilarArtists extends Component {
 			return <SimilarArtists artistInput={this.state.artists[this.state.index].name} />
 
 		return (
-			<div>
-					<div>
-						<h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2>
-						<img src={this.state.artistInfo.image[3]["#text"]} alt ="img" />
-						<h2> Similar Artists:</h2>
-						{this.state.artists.map(
-							(element, i) =>
-								<div key={i}>
-									<h3 onClick={this.handleClickSimilar} id={i}>{element.name}</h3>
-									<img src={element.image[3]["#text"]} alt="img"></img>
-									<button onClick={this.handleClickListSimilar} id={i}> + </button>
-								</div>
-						)}
-					</div>
-			</div>
-		);
-	}
-}
+			
+				<MuiThemeProvider theme={theme}>
+				
+				<Grid container justify="center">
+					<Grid xs={8} container justify="center">
+						<Grid  justify="center">
+							<Typography><h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2></Typography>
+						</Grid >
+						<Grid container justify="center">
+							<Avatar src={this.state.artistInfo.image[3]["#text"]} alt ="img" className={this.props.classes.pictures}></Avatar>
+						</Grid>
+						
 
-export default SimilarArtists;
+						<Grid container justify="center">
+						<Typography> Artists:</Typography>
+						</Grid>
+							
+						<Grid container justify="space-between">
+					
+							{this.state.artists.map(
+								(element, i) =>
+									<div key={i}>
+									<Grid container justify="center">
+									<Typography><h3 onClick={this.handleClickSimilar} id={i}>{element.name}</h3></Typography>
+									</Grid>
+									<Grid container justify="center">
+									<Avatar src={element.image[3]["#text"]} alt="img"  className={this.props.classes.pictures}></Avatar>
+									</Grid>
+									<Grid container justify="center">
+									<MuiThemeProvider theme={theme}>
+								<Button variant="contained" color="primary" onClick={this.handleClickListSimilar} id={i}><Typography>Push Me</Typography></Button >
+								</MuiThemeProvider>
+								</Grid>
+								</div>
+							)}
+							</Grid>
+							</Grid>
+							</Grid>
+						
+							</MuiThemeProvider>
+							)}}
+	
+
+export default  withStyles(styles)(SimilarArtists);
+

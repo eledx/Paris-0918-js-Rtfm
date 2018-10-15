@@ -7,16 +7,6 @@
   src: url('./font/maiden.ttf');
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-}
-
-h1 {
-  font-family: 'maiden';
-  font-size: 5rem;
-  color: white;
-}
-
 .App-header {
   background-color: #282c34;
   height: 100vh;
