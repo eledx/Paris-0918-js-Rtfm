@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
+import {Typography, Grid} from '@material-ui/core';
+
 import './Footer.css';
 
 class Footer extends Component{
 	render () {
 		return(
-                <footer className="containerFooter">
-                    <h4>ENGUERRAND LE FOOTER !</h4>
+			
+			<Grid container direction="column"  alignItems="center">
+				<footer>
+					<Typography variant='h5' align='center' color='secondary'></Typography>
 				</footer>
+			</Grid>
+			/*ENGUERRAND LE FOOTER !*/
 		);
 	}
 
