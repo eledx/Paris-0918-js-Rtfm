@@ -38,11 +38,12 @@ class SimilarArtists extends Component {
 			renderFicheArtist : false,
 			renderFicheArtistSimilar : false,
 			index: 0,
-			renderSimilarArtists: false
+			renderSimilarArtists: false,
+			error: false
 		};
   	}
 
-	requestUrlApi(artist){
+	requestUrlApi(artist= ""){
     	this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getsimilar';
@@ -53,7 +54,16 @@ class SimilarArtists extends Component {
 	componentDidMount(){
 		fetch(this.requestUrlApi(this.props.artistInput))
 			.then(resp => resp.json())
-			.then(resp => this.setState({artists : resp.similarartists.artist}))
+			.then(resp => {
+				//console.log("titi", resp.similarartists)
+				if(resp.similarartists !== undefined && !resp.error){
+					//console.log("tata", resp.similarartists.artist)
+					this.setState({artists : resp.similarartists.artist})
+				} else{
+					//console.log("tutu")
+					this.setState({error : true})
+				}
+			})
 		fetch(`http://audioscrobbler.com/2.0/?method=artist.getInfo&artist=${this.props.artistInput}&limit=1&api_key=af05581a38f69802ba020346115c8834&format=json`)
 			.then(resp => resp.json())
 			.then(resp => this.setState({artistInfo : resp.artist}))
@@ -78,14 +88,11 @@ class SimilarArtists extends Component {
 
 	render() {
 
-		console.log('SimilarArtist.js', this.props.artistInput)
 		if(this.state.artists === null || this.state.artistInfo === null)
-			return (
-				<div>
-					<p>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
-					<LoadSpinner/>
-				</div>
-			);
+			if(this.state.error === true)
+				return <p>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
+			else
+				return <LoadSpinner/>
 		if(this.state.renderFicheArtist === true)
 			return <FicheArtist artistName={this.state.artistInfo.name} />
 		if(this.state.renderFicheArtistSimilar === true && this.state.index !== null)
