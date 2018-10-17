@@ -30,35 +30,16 @@ class FicheArtist extends Component {
 		//console.log("ficheArtist.js", this.props.artistName)
 		return(
 			<MuiThemeProvider theme={theme}>
-					
-					
 						<Grid container justify= 'center' className="backgroundDisc">
-						
-								<Grid item xs={8} justify= 'center'>
-									
-									<Header />
-
-									
-									
-									<ArtistConcerts artistName={this.props.artistName} />
-
-									<ArtistBio artistName={this.props.artistName} />
-									
-									
-									
-									
-									<Tracks artistName={this.props.artistName} />
-
-									<Footer />
-
-
-								</Grid>
-								
+							<Grid item xs={8} justify= 'center'>
+								<Header />
+								<ArtistConcerts artistName={this.props.artistName} />
+								<ArtistBio artistName={this.props.artistName} />
+								<Tracks artistName={this.props.artistName} />
+								<Footer />
+							</Grid>
 						</Grid>
-				
-						
 				</MuiThemeProvider>
-		
 		)
 	}
 }
