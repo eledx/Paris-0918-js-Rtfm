@@ -2,32 +2,26 @@ import React, { Component } from 'react';
 import LoadSpinner from './LoadSpinner';
 
 import { Grid, Typography } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
-	palette:{
-		primary: { main: '#FFFFFF'},
-		secondary: { main: '#B32525'},
-		background : {paper: '#000000'},
+	palette: {
+		primary: { main: '#FFFFFF' },
+		secondary: { main: '#B32525' },
+		background: { paper: '#000000' },
 	},
-	
-  });
 
-
-const stylesArtist = withStyles => ({
-	
-})
-
+});
 
 class ArtistBio extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
-		this.state = { 
-			artists : null
+		this.state = {
+			artists: null
 		};
 
 	}
-	requestUrlApi(){
+	requestUrlApi() {
 		this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getInfo';
@@ -36,45 +30,39 @@ class ArtistBio extends Component {
 		return `${this.apiBase}method=${this.method}&artist=${this.artistName}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
-			.then(resp =>  this.setState({artists : resp.artist}))
+			.then(resp => this.setState({ artists: resp.artist }))
 	}
-	render(){
-		if (this.state.artists === null){
-			return <LoadSpinner/>;
+	render() {
+		if (this.state.artists === null) {
+			return <LoadSpinner />;
 		}
 		const regex = /<a.+a>/g;
 
 
 		var myClassNammes = 'gallery diapositive';
-		
+
 
 		//console.log("artistBio",this.props.artistName)
-		return(
-			
-/* Mettre u box shadow a l'image box-shadow: 8px 8px 0px #c5c5c5; */
+		return (
+
+			/* Mettre u box shadow a l'image box-shadow: 8px 8px 0px #c5c5c5; */
 			<MuiThemeProvider theme={theme}>
-
-				
-
-			<Grid container>
-				<Grid item xs={8}>
-					<Typography variant="p" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
+				<Grid container>
+					<Grid item xs={4} className={myClassNammes}>
+						<a href={this.state.artists.name} title={this.state.artists.name}>
+							<img src={this.state.artists.image[3]["#text"]} alt={this.state.artists.name} title={this.state.artists.name} />
+						</a>
+					</Grid>
+					<Grid item xs={8}>
+						<Typography variant="p" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
+					</Grid>
 				</Grid>
-
-
-				<Grid item xs={4} className={myClassNammes}>
-					<a href={this.state.artists.name} title={this.state.artists.name}>
-						<img src={this.state.artists.image[3]["#text"]} alt={this.state.artists.name} title={this.state.artists.name} />
-					</a>
-				</Grid>
-			</Grid>
-				
 			</MuiThemeProvider>
 		)
 	}
 }
 
-export default withStyles(stylesArtist)(ArtistBio);
+export default ArtistBio;

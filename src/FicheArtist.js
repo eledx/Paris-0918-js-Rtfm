@@ -7,41 +7,35 @@ import Footer from './Footer';
 import './FicheArtist.css';
 
 import { Grid } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
 const theme = createMuiTheme({
-	palette:{
-		primary: { main: '#ffffff'},
-		secondary: { main: '#B32525'},
-		//background : {paper: '#000000'},
+	palette: {
+		primary: { main: '#ffffff' },
+		secondary: { main: '#B32525' },
 	},
-	
-  });
-
-  const styles = theme => ({
-
-
-  });
+});
 
 class FicheArtist extends Component {
 
-	render(){
+	render() {
 		//console.log("ficheArtist.js", this.props.artistName)
-		return(
+		return (
 			<MuiThemeProvider theme={theme}>
-						<Grid container justify= 'center' className="backgroundDisc">
-							<Grid item xs={8} justify= 'center'>
-								<Header />
-								<ArtistConcerts artistName={this.props.artistName} />
-								<ArtistBio artistName={this.props.artistName} />
-								<Tracks artistName={this.props.artistName} />
-								<Footer />
-							</Grid>
-						</Grid>
-				</MuiThemeProvider>
+
+				<Grid container justify='center' className="backgroundDisc">
+					<Grid item xs={8} justify='center'>
+						<Header />
+						<ArtistConcerts artistName={this.props.artistName} />
+						<ArtistBio artistName={this.props.artistName} />
+						<Tracks artistName={this.props.artistName} />
+						<Footer />
+					</Grid>
+				</Grid>
+			</MuiThemeProvider>
 		)
 	}
 }
 
-export default withStyles(styles)(FicheArtist);
+export default FicheArtist;
