@@ -82,7 +82,7 @@ class ArtistConcerts extends Component {
 						<ul className='displayPostIt' key={index}>
 							<li className={this.props.classes.li}><span className={this.props.classes.span}>{element.displayName.replace('at','-')}</span></li>
 							<li className={this.props.classes.li}>{element.location.city}</li>
-							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank">Plan</a></li>
+							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer">Plan</a></li>
 						</ul>		
 						
 						</Grid>
