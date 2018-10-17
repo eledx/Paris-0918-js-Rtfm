@@ -54,12 +54,13 @@ class ArtistConcerts extends Component {
 		fetch(this.apiConcertsByName())
 			.then(resp => resp.json())
 			.then(resp => {
-				const id = resp.resultsPage.results.artist[0].id;
-				this.setState({id});
-				fetch(this.apiConcertsWithId(id))
-				.then(resp => resp.json())
-				.then(resp => this.setState({concert : resp.resultsPage.results}))
-			});
+				if(Object.getOwnPropertyNames(resp.resultsPage.results).length !== 0){
+					const id = resp.resultsPage.results.artist[0].id;
+					this.setState({id});
+					fetch(this.apiConcertsWithId(id))
+					.then(resp => resp.json())
+					.then(resp => this.setState({concert : resp.resultsPage.results}))
+			}});
 	}
 
 	render() {
