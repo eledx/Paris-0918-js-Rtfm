@@ -1,15 +1,4 @@
-.footer
-{
-    display: flex; 
-
-}
-   
-@media screen and (min-width: 0px) and (max-width: 767px){ 
-        .footer{ 
-            flex-direction: column;
-    }
-        .bar{
-           margin-left: 25%;
-           margin-top: 175px;
-        }
-}
+/*footer{
+    position: absolute;
+    bottom: 0;
+}*/

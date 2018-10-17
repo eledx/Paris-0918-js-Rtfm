@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import LoadSpinner from './LoadSpinner';
-import MusicPlayer from 'react-responsive-music-player'
+import MusicPlayer from 'react-responsive-music-player';
+
+import { Grid } from '@material-ui/core';
+
 
 class Tracks extends Component {
 	constructor(props){
     	super(props);
-    	this.state = { tracks : null,};
+    	this.state = { tracks : null};
   	}
 
 	requestUrlApi(){
-		this.proxy = `https://6fd6ffbe.ngrok.io`;
-		this.artistName = 'acdc';
+		this.proxy = `https://a9bee2df.ngrok.io`;
+		this.artistName = this.props.artistName;
 		this.limit = '10';
     	return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
   	}
@@ -28,20 +31,25 @@ class Tracks extends Component {
         if(this.state.tracks === null){
             return (<LoadSpinner/>);
         }
-        playlist = this.state.tracks.map((e)=>{
-        	return {
-        		url: e.preview, 
-        		cover: e.album.cover_medium, 
-        		title: e.title, 
-        		artist: [e.artist.name]
-        	}
+        this.state.tracks.filter((e)=>{
+	        if(e.artist.name.includes(this.props.artistName)) {
+	        	playlist.push({
+	        		url: e.preview, 
+	        		cover: e.album.cover_medium, 
+	        		title: e.title, 
+	        		artist: [e.artist.name]
+        		})
+	        }	
+	        return playlist;
         });
 
+        if(playlist.length === 0)
+        	return `Sorry, we haven't any tracks from ${this.props.artistName}`
+
 		return (
-			<div>
-				<h2>Morceaux</h2>
+			<Grid item xs={12} justify="left">
 				<MusicPlayer playlist={playlist} />
-			</div>
+			</Grid>
 		);
 	}
 }

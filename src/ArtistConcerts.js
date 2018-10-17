@@ -1,37 +1,98 @@
 import React, { Component } from 'react';
+import LoadSpinner from './LoadSpinner';
+
+import { Grid} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+
+const stylesArtistConcert = withStyles => ({
+   
+	ul:{
+    	padding: 15,
+		borderRadius: 10,
+		backgroundColor: 'rgba(126, 1, 2, 0.5)',
+		
+	},
+	li:{
+		
+		fontSize: 15,
+		listStyle: 'none',
+	},
+	span:{
+		fontWeight: 'bold',
+		
+		fontSize: 25,
+	},
+	a:{
+		fontStyle: 'italic',
+	}
+	
+	
+
+});
 
 
 class ArtistConcerts extends Component {
 	constructor(props){
 		super(props);
 		this.state = { 
-			concert : []
+			id : null,
+			concert : null
 		};
 	}
 
-	apiConcerts(){
+	apiConcertsByName(){
 		this.name = this.props.artistName;
-		console.log(this.name);
-		return `https://rest.bandsintown.com/artists/${this.name}/events?app_id=2a68c8b9f4bcbc7eecd0e2efdd7cac51&date=upcoming`;
+		return `https://api.songkick.com/api/3.0/search/artists.json?apikey=u7XCPTAHztwOPCRa&query=${this.props.artistName}`;
+	}
+
+	apiConcertsWithId(id){
+		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa&per_page=3`;
+
 	}
 
 	componentDidMount(){
-		fetch(this.apiConcerts())
+		fetch(this.apiConcertsByName())
 			.then(resp => resp.json())
-			.then(resp => this.setState({concert : resp}))
+			.then(resp => {
+				const id = resp.resultsPage.results.artist[0].id;
+				this.setState({id});
+				fetch(this.apiConcertsWithId(id))
+				.then(resp => resp.json())
+				.then(resp => this.setState({concert : resp.resultsPage.results}))
+			});
 	}
 
-	render()
-		{console.log("artistConcerts",this.props.artistName)
-		if (this.state.concert.length === 0){
-			return "loading..";
+	render() {
+		if(this.state.concert === null)
+			return <LoadSpinner/>;
+		if(Object.getOwnPropertyNames(this.state.concert).length === 0){
+			return "No upcoming concerts";
 		}
+
+		//console.log(this.state.concert)
 		return(
-			<div>
-				<p>Next concert in {this.state.concert[0].venue.city}, {this.state.concert[0].venue.country}</p>
-			</div>
+
+			<Grid container>
+				
+				{this.state.concert.event.map(
+					(element, index) =>
+						<Grid item xs={12} alignItems='center'>
+							
+						<ul className='displayPostIt' key={index}>
+							<li className={this.props.classes.li}><span className={this.props.classes.span}>{element.displayName.replace('at','-')}</span></li>
+							<li className={this.props.classes.li}>{element.location.city}</li>
+							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank">Plan</a></li>
+						</ul>		
+						
+						</Grid>
+						
+				)}
+
+			</Grid>
+			
 		)
+
 	}
 }
 
-export default ArtistConcerts;
+export default withStyles(stylesArtistConcert)(ArtistConcerts);

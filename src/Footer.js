@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
+import {Typography, Grid} from '@material-ui/core';
+
 import './Footer.css';
 
 class Footer extends Component{
 	render () {
 		return(
-                <footer>
-                    <h4>About us...</h4>
-					<div className="footer">	
-						<p>Orientis vero limes in longum protentus.</p>
-						<p>Orientis vero limes in longum protentus.</p>
-						<p>Orientis vero limes in longum protentus.</p>
-						<p>Orientis vero limes in longum protentus.</p>
-					</div>
+			
+			<Grid container direction="column"  alignItems="center">
+				<footer>
+					<Typography variant='h5' align='center' color='secondary'></Typography>
 				</footer>
+			</Grid>
+			/*ENGUERRAND LE FOOTER !*/
 		);
 	}
 

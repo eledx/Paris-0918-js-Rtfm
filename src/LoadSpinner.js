@@ -23,7 +23,7 @@ class LoadSpinner extends Component {
 		          className={override}
 		          sizeUnit={"px"}
 		          size={150}
-		          color={'white'}
+		          color={'#604c8d'}
 		          loading={this.state.loading}
 	        	/>
      		</div> 
