@@ -25,7 +25,7 @@ class FicheArtist extends Component {
 			<MuiThemeProvider theme={theme}>
 
 				<Grid container justify='center' className="backgroundDisc">
-					<Grid item xs={8} justify='center'>
+					<Grid item xs={8}>
 						<Header />
 						<ArtistConcerts artistName={this.props.artistName} />
 						<ArtistBio artistName={this.props.artistName} />

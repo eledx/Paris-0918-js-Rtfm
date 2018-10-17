@@ -10,6 +10,9 @@ const theme = createMuiTheme({
 		secondary: { main: '#B32525' },
 		background: { paper: '#000000' },
 	},
+	typography: {
+		useNextVariants: true,
+	  },
 
 });
 
@@ -57,7 +60,7 @@ class ArtistBio extends Component {
 						</a>
 					</Grid>
 					<Grid item xs={8}>
-						<Typography variant="p" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
+						<Typography variant="body1" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
 					</Grid>
 				</Grid>
 			</MuiThemeProvider>
