@@ -17,12 +17,12 @@ const theme = createMuiTheme({
 		//background : {paper: '#000000'},
 	},
 	
-  });
+    });
 
-  const styles = theme => ({
+    const styles = theme => ({
 
 
-  });
+    });
 
 class FicheArtist extends Component {
 
@@ -30,9 +30,8 @@ class FicheArtist extends Component {
 		//console.log("ficheArtist.js", this.props.artistName)
 		return(
 			<MuiThemeProvider theme={theme}>
-					
-					
 						<Grid container justify= 'center' className="backgroundDisc">
+
 						
 								<Grid item xs={8} justify= 'center'>
 									
@@ -46,6 +45,8 @@ class FicheArtist extends Component {
 						</Grid>
 
 				</MuiThemeProvider>
+
+
 
 		)
 	}

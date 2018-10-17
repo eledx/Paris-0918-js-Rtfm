@@ -5,7 +5,7 @@ import { Grid} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const stylesArtistConcert = withStyles => ({
-   
+
 	ul:{
     	padding: 15,
 		borderRadius: 10,
@@ -54,12 +54,13 @@ class ArtistConcerts extends Component {
 		fetch(this.apiConcertsByName())
 			.then(resp => resp.json())
 			.then(resp => {
-				const id = resp.resultsPage.results.artist[0].id;
-				this.setState({id});
-				fetch(this.apiConcertsWithId(id))
-				.then(resp => resp.json())
-				.then(resp => this.setState({concert : resp.resultsPage.results}))
-			});
+				if(Object.getOwnPropertyNames(resp.resultsPage.results).length !== 0){
+					const id = resp.resultsPage.results.artist[0].id;
+					this.setState({id});
+					fetch(this.apiConcertsWithId(id))
+					.then(resp => resp.json())
+					.then(resp => this.setState({concert : resp.resultsPage.results}))
+			}});
 	}
 
 	render() {
@@ -81,7 +82,7 @@ class ArtistConcerts extends Component {
 						<ul className='displayPostIt' key={index}>
 							<li className={this.props.classes.li}><span className={this.props.classes.span}>{element.displayName.replace('at','-')}</span></li>
 							<li className={this.props.classes.li}>{element.location.city}</li>
-							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank">Plan</a></li>
+							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer">Plan</a></li>
 						</ul>		
 						
 						</Grid>
