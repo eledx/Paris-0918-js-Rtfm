@@ -37,28 +37,16 @@ class FicheArtist extends Component {
 								<Grid item xs={8} justify= 'center'>
 									
 									<Header />
-
-									
-									
 									<ArtistConcerts artistName={this.props.artistName} />
-
 									<ArtistBio artistName={this.props.artistName} />
-									
-									
-									
-									
 									<Tracks artistName={this.props.artistName} />
-
 									<Footer />
-
-
 								</Grid>
 								
 						</Grid>
-				
-						
+
 				</MuiThemeProvider>
-		
+
 		)
 	}
 }
