@@ -23,6 +23,7 @@ class FicheArtist extends Component {
 		//console.log("ficheArtist.js", this.props.artistName)
 		return (
 			<MuiThemeProvider theme={theme}>
+
 				<Grid container justify='center' className="backgroundDisc">
 					<Grid item xs={8} justify='center'>
 						<Header />

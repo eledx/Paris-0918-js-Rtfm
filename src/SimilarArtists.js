@@ -5,14 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
 const styles = () =>({
 	pictures: {
-	width: 300,
-	height: 300,
+	width: 200,
+	height: 200,
 }
 });
 
@@ -41,7 +41,7 @@ class SimilarArtists extends Component {
 			renderSimilarArtists: false,
 			error: false
 		};
-  	}
+	}
 
 	requestUrlApi(artist= ""){
     	this.apiBase = 'http://audioscrobbler.com/2.0/?';
@@ -99,34 +99,33 @@ class SimilarArtists extends Component {
 			return <FicheArtist artistName={this.state.artists[this.state.index].name} />
 		if(this.state.renderSimilarArtists === true && this.state.index !== null)
 			return <SimilarArtists artistInput={this.state.artists[this.state.index].name} />
-
+			
 		return (
 			<MuiThemeProvider theme={theme}>
 				<Grid container justify="center">
-					<Grid xs={8} container justify="center">
-						<Grid  justify="center">
-							<Typography><h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2></Typography>
+					<Grid item xs={8} >
+						<Grid container justify="center">
+							<h2 onClick={this.handleClick}>{this.state.artistInfo.name}</h2>
 						</Grid >
 						<Grid container justify="center">
 							<Avatar style={{width:'300px', height:'300px'}} src={this.state.artistInfo.image[3]["#text"]} alt ="img" ></Avatar>
 						</Grid>
 						<Grid container justify="center">
-							<Typography> Artists:</Typography>
+							<h2> Artists:</h2>
 						</Grid>
 						<Grid container justify="space-between">
 							{this.state.artists.map(
 								(element, i) =>
 									<div key={i}>
 										<Grid container justify="center">
-											<Typography><h3 onClick={this.handleClickSimilar} id={i}>{element.name}</h3></Typography>
+											<p onClick={this.handleClickSimilar} id={i}>{element.name}</p>
 										</Grid>
 										<Grid container justify="center">
 											<Avatar style={{width:'300px', height:'300px'}} src={element.image[3]["#text"]} alt="img"  ></Avatar>
 										</Grid>
 										<Grid container justify="center">
-											<MuiThemeProvider theme={theme}>
-												<Button variant="contained" color="primary" onClick={this.handleClickListSimilar} id={i}><Typography>Push Me</Typography></Button >
-											</MuiThemeProvider>
+											<Button variant="contained" color="primary" onClick={this.handleClickListSimilar} id={i}><h3>Push Me</h3></Button >
+											
 										</Grid>
 									</div>
 							)}
