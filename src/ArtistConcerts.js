@@ -22,7 +22,7 @@ class ArtistConcerts extends Component {
 		return `https://api.songkick.com/api/3.0/search/artists.json?apikey=u7XCPTAHztwOPCRa&query=${this.props.artistName}`;
 	}
 
-	apiConcertsWithId(id) {
+	apiConcertsWithId(id) { //121125
 		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa&per_page=3`;
 	}
 
@@ -46,22 +46,26 @@ class ArtistConcerts extends Component {
 		if (Object.getOwnPropertyNames(this.state.concert).length === 0) {
 			return "No upcoming concerts";
 		}
-		
+		//Utilisation de la librairie moment.js pour manipuler les Dates.. TOP LIBRARY npm install moment
+		let moment = require('moment');
 		//console.log(this.state.concert)
 		return (
-
-			<Grid container justify="center">
+			
+			<Grid container justify="center" className="artistConcert">
 				{this.state.concert.event.map(
 					(element, index) =>
-					
 						<ul className='displayPostIt' key={index}>
-							<li className={this.props.classes.li}>
-								<span className={this.props.classes.spanConcert}>{element.displayName.replace('at', '-')}</span>
+							<li className={this.props.classes.li}>{ moment(element.start.date).format( 'MMMM Do YYYY')}
+								{element.start.datetime !== null ? ' - ' + moment(element.start.datetime).format('h:mm') : ''}
 							</li>
-							<li className={this.props.classes.li}>{element.location.city}</li>
+							{element.performance.map(
+								(artisteName) =>
+								<li>{artisteName.displayName}</li>
+							)}
+							<li className={this.props.classes.li}>{element.venue.displayName}</li>
+							<li className={this.props.classes.li}> {element.location.city.replace(", "," - ")}</li>
 							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer">Plan</a></li>
 						</ul>
-					
 				)}
 			</Grid>
 		)

@@ -11,11 +11,6 @@
   font-family: 'journal';
   src: url('./font/journal.ttf');
 }
-@font-face {
-  font-family: 'metal';
-  src: url('./font/Metal_Lord.ttf');
-}
-
 
 .bgHome{
   height: 100vh;
