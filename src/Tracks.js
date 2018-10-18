@@ -12,14 +12,14 @@ class Tracks extends Component {
 	}
 
 	requestUrlApi() {
-		this.proxy = `http://a1663926.ngrok.io`;
+		this.proxy = `http://de820f4d.ngrok.io`;
 		this.artistName = this.props.artistName;
 		this.limit = '10';
 		return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
 	}
 
 	componentDidMount() {
-
+		console.log("tracks" , this.requestUrlApi() )
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
 			.then(resp => this.setState({ tracks: resp.data }))
@@ -31,7 +31,10 @@ class Tracks extends Component {
 		if (this.state.tracks === null) {
 			return (<LoadSpinner />);
 		}
+		//console.log("tracks", this.state.tracks)
+		
 		this.state.tracks.filter((e) => {
+			//console.log("name", this.props.artistName)
 			if (e.artist.name.includes(this.props.artistName)) {
 				playlist.push({
 					url: e.preview,
@@ -42,7 +45,7 @@ class Tracks extends Component {
 			}
 			return playlist;
 		});
-
+		//console.log("playlist", playlist)
 		if (playlist.length === 0)
 			return `Sorry, we haven't any tracks from ${this.props.artistName}`
 

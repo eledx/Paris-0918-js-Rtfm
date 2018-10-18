@@ -27,9 +27,9 @@ class FicheArtist extends Component {
 				<Grid container justify='center' className="backgroundDisc">
 					<Grid item xs={8}>
 						<Header />
-						<ArtistConcerts artistName={this.props.artistName} />
-						<ArtistBio artistName={this.props.artistName} />
-						<Tracks artistName={this.props.artistName} />
+						<ArtistConcerts artistName={this.props.match.params.name} />
+						<ArtistBio artistName={this.props.match.params.name} />
+						<Tracks artistName={this.props.match.params.name} />
 						<Footer />
 					</Grid>
 				</Grid>
