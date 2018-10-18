@@ -1,20 +1,34 @@
-
+@import url('https://fonts.googleapis.com/css?family=Reenie+Beanie');
 @font-face {
-    font-family: 'PostIt';
-    src: url('https://fonts.googleapis.com/css?family=Reenie+Beanie');
-}
-
+    font-family: 'textTrash';
+    src: url('./font/Old_Press.ttf');
+  }
+  @font-face {
+    font-family: 'stamp';
+    src: url('./font/RUBBERSTAMP.otf');
+  }
 .backgroundDisc{
     background: url("https://stephaneaguileravideaste.boutique/WebRoot/Store9/Shops/bdf3a82d-4a2f-4721-839a-2e256f94830b/588A/3670/1919/8A94/91FE/0A48/351F/5440/disque-vinyls-12-macarons-vierges_ml.jpg")
     no-repeat center top;
-    background-size: cover;
+    /*background-size: cover;*/
+    height: 100%;
     
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+    
+}
+.artisteBio{
+    margin-top: 35px;
 }
 
 
-
 /* Style por l'effet diapo */
-.gallery a {
+.gallery span {
     background: white;
     float: left;
     margin: 0 15px 30px;
@@ -29,87 +43,138 @@
     transition: all .15s linear;
     z-index:0;
     font-family: "journal";
-}
 
-.gallery a{
    z-index: 1;
-   transform: rotate(10deg);
-   -moz-transform: rotate(10deg);
-    -webkit-transform: rotate(10deg);
-    -o-transform: rotate(10deg);
-    -ms-transform: rotate(10deg);
+   transform: rotate(-10deg);
+   -webkit-transform: rotate(-10deg);
+   -moz-transform: rotate(-10deg);
 }
 
-.gallery  a:after {
-   color: #333;
-       font-size: 30px;
+.gallery  span:after {
+       color: #aa0000;
+       font-size: 40px;
        content: attr(title);
-     /*  position: relative;
-       top:15px;*/
+       font-family: 'stamp';
+       position: absolute;
+       bottom: -35px;
+       transform: rotate(-15deg);
+       line-height: 1;
 }
 .gallery img {
        display: block;
        width: inherit;
-       width: 250px;
+       width: 225px;
        height: auto;
 }
-
-.diapositive{
-    position: absolute;
-    top: 105px;
-    right: 85px;
+/* Fin effet diapo */
+@media screen and (max-width: 826px) {
+    ul{
+        top:10px;
+        transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+    -o-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    }
+    ul:nth-child(2){
+        top:25px;
+        transform: rotate(-4deg);
+    -moz-transform: rotate(-4deg);
+    -webkit-transform: rotate(-4deg);
+    -o-transform: rotate(-4deg);
+    -ms-transform: rotate(-4deg);
+    }
+    ul:nth-child(3){
+        top:48px;
+        transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    }
 }
-
-.tutu{
-    background:red;
+@media screen and (min-width: 826px) {
+    ul{
+        transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+    -o-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    }
+    ul:nth-child(2){
+        top:10px;
+        transform: rotate(-20deg);
+    -moz-transform: rotate(-20deg);
+    -webkit-transform: rotate(-20deg);
+    -o-transform: rotate(-20deg);
+    -ms-transform: rotate(-20deg);
+    }
+    ul:nth-child(3){
+        top:2px;
+        transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    }
 }
-/*.displayPostIt{ line-height: 1;  
-    padding: 25px;  
-    text-align:center;     
-    width: 275px;    
-    margin: 25px;    
-    min-height:250px;
-    max-height:250px;
-    padding-top:35px;
-    position:relative;   
-    border:1px solid #E8E8E8;  
-    border-top:60px solid #fdfd86;
-    font-family:'Reenie Beanie';    
-    font-size:22px;      
-    border-bottom-right-radius: 60px 5px;
-    display:inline-block;    
-    background: #ffff88; 
-   -webkit-transform: rotate(-10deg);
-  -moz-transform: rotate(-10deg);
-
-}*/
 
 ul{
     padding: 2%;
     width: 275px;    
-background-color: #ffffa5;
-box-shadow: 2px 4px 6px #444;
--moz-box-shadow: 2px 4px 6px #444;
--webkit-box-shadow: 2px 4px 6px #444;
-
-border-bottom-right-radius: 60px 10px;
-font-family: 'PostIt';
-
-
-    transform: rotate(2deg);
--moz-transform: rotate(2deg);
--webkit-transform: rotate(2deg);
--o-transform: rotate(2deg);
--ms-transform: rotate(2deg);
+    background-color: #ffffa5;
+    box-shadow: 2px 4px 6px #444;
+    -moz-box-shadow: 2px 4px 6px #444;
+    -webkit-box-shadow: 2px 4px 6px #444;
+    border-bottom-right-radius: 60px 10px;
+    align-self: self-start;
 }
-ul:nth-child(even) {
-    transform: rotate(-20deg);
--moz-transform: rotate(-20deg);
--webkit-transform: rotate(-20deg);
--o-transform: rotate(-20deg);
--ms-transform: rotate(-20deg);
+ul:nth-child(2){
     position:relative;
-  top:5px;
-  background:#cfc;
-   
+    background:#cfc;
+}
+ul:nth-child(3){
+    position:relative;
+    background:#deff78;}
+li{
+    list-style: none;
+}
+
+
+.rotateText{
+    transform: rotate(8deg);
+}
+
+
+  .spanConcert{
+      font-size: 18px;
+      font-weight: bold;
   }
+
+  /* Modifier le player */
+/* .cover-container{
+      display: none;
+  }
+  .music-info .title{color:red !important}
+  .music-info .artist{color:red !important}
+  
+  .left-time .player-container .info-and-control .time-and-volume .volume-container .volume-icon i{color:yellow !important}
+
+
+  .player-container .info-and-control .time-and-volume .volume-container .volume-wrapper .progress-container .progress{background-color: green !important;}
+  .icon{color:red !important}
+  .player-container .info-and-control .progress-container{background: green !important}
+  .progress{background-color: red !important}
+
+
+  .player-container .info-and-control .progress-container{height:3px !important;}
+  .player-container .info-and-control .time-and-volume .left-time {
+    
+    font-weight: 600;
+  }
+  h2, h3{margin: 5px 0;}
+  .player-container .info-and-control .control-container{margin-top:15px;}
+
+  */
+
+  marginTop:

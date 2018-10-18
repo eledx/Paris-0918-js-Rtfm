@@ -5,22 +5,7 @@ import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const stylesArtistConcert = withStyles => ({
-	ul: {
-		padding: 15,
-		borderRadius: 10,
-		backgroundColor: 'rgba(126, 1, 2, 0.5)',
-	},
-	li: {
-		fontSize: 15,
-		listStyle: 'none',
-	},
-	span: {
-		fontWeight: 'bold',
-		fontSize: 25,
-	},
-	a: {
-		fontStyle: 'italic',
-	}
+
 });
 
 class ArtistConcerts extends Component {
@@ -61,18 +46,22 @@ class ArtistConcerts extends Component {
 		if (Object.getOwnPropertyNames(this.state.concert).length === 0) {
 			return "No upcoming concerts";
 		}
-
+		
 		//console.log(this.state.concert)
 		return (
 
-			<Grid container>
+			<Grid container justify="center">
 				{this.state.concert.event.map(
 					(element, index) =>
+					
 						<ul className='displayPostIt' key={index}>
-							<li className={this.props.classes.li}><span className={this.props.classes.span}>{element.displayName.replace('at', '-')}</span></li>
+							<li className={this.props.classes.li}>
+								<span className={this.props.classes.spanConcert}>{element.displayName.replace('at', '-')}</span>
+							</li>
 							<li className={this.props.classes.li}>{element.location.city}</li>
 							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer">Plan</a></li>
 						</ul>
+					
 				)}
 			</Grid>
 		)

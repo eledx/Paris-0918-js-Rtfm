@@ -6,14 +6,15 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
 	palette: {
-		primary: { main: '#FFFFFF' },
-		secondary: { main: '#B32525' },
+		primary: { main: '#000000' },
+		secondary: { main: '#FF0000' },
 		background: { paper: '#000000' },
 	},
 	typography: {
 		useNextVariants: true,
-	  },
-
+		fontSize: 35,
+		fontFamily: 'textTrash',
+	},
 });
 
 class ArtistBio extends Component {
@@ -44,23 +45,18 @@ class ArtistBio extends Component {
 		}
 		const regex = /<a.+a>/g;
 
-
-		var myClassNammes = 'gallery diapositive';
-
-
 		//console.log("artistBio",this.props.artistName)
 		return (
-
-			/* Mettre u box shadow a l'image box-shadow: 8px 8px 0px #c5c5c5; */
+			
 			<MuiThemeProvider theme={theme}>
-				<Grid container>
-					<Grid item xs={4} className={myClassNammes}>
-						<a href={this.state.artists.name} title={this.state.artists.name}>
+				<Grid container className="artisteBio" alignItems="center" justify="center">
+					<Grid item xs={12} md={6} className="gallery">
+						<span href={this.state.artists.name} title={this.state.artists.name}>
 							<img src={this.state.artists.image[3]["#text"]} alt={this.state.artists.name} title={this.state.artists.name} />
-						</a>
+						</span>
 					</Grid>
-					<Grid item xs={8}>
-						<Typography variant="body1" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
+					<Grid item xs={12} md={6}>
+						<Typography variant="body1" color="secondary" align='justify' className="rotateText">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
 					</Grid>
 				</Grid>
 			</MuiThemeProvider>

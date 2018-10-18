@@ -12,7 +12,7 @@ class Tracks extends Component {
 	}
 
 	requestUrlApi() {
-		this.proxy = `http://a1663926.ngrok.io`;
+		this.proxy = `http://31f7d0b4.ngrok.io`;
 		this.artistName = this.props.artistName;
 		this.limit = '10';
 		return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
@@ -47,7 +47,7 @@ class Tracks extends Component {
 			return `Sorry, we haven't any tracks from ${this.props.artistName}`
 
 		return (
-			<Grid item xs={12}>
+			<Grid container justify="center">
 				<MusicPlayer playlist={playlist} />
 			</Grid>
 		);

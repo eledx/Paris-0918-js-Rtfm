@@ -13,6 +13,11 @@ const stylesH1 = withStyles => ({
         color: 'white',
         fontSize: 120,
     },
+    link:{
+        textDecoration: 'none',
+        '&:hover': {
+            color: 'transparent'}
+    }
 });
 
 
@@ -25,8 +30,7 @@ class Header extends Component{
             
             <Grid container justify="center">
                 <header className={this.props.classes.HeaderContainer}>
-                    <Typography variant='h1' className={this.props.classes.HeaderTitle}>RTFM</Typography>
-
+                    <a href="/" titile="home" className={this.props.classes.link}><Typography variant='h1' className={this.props.classes.HeaderTitle}>RTFM</Typography></a>
                 </header>
             </Grid>
         );
