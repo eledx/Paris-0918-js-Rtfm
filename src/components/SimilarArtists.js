@@ -92,7 +92,7 @@ class SimilarArtists extends Component {
 				return <LoadSpinner/>
 		return (
 			<MuiThemeProvider theme={theme}>
-			<Grid container justify="center">
+			<Grid container justify="center" className="bgHome">
 				<Grid item xs={8} >
 					<Header/>
 					<Grid container justify="center">

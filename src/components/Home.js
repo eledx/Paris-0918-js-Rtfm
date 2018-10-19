@@ -98,7 +98,7 @@ class Home extends Component {
       const { classes } = this.props;
 
       return(
-      <Grid container justify='center' alignItems='center' >
+      <Grid container justify='center' alignItems='center' className="bgHome">
         <Grid item  xs={8}  >
           <Header/>
           <Grid container justify='center' alignItems='center' >

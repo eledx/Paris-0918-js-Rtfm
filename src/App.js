@@ -29,7 +29,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <Grid container justify= 'center' className="bgHome">
+       
               <BrowserRouter>
                 <Switch>
                   <Route exact path="/" component={Home} />
@@ -37,7 +37,7 @@ class App extends Component {
                   <Route exact path="/fiche-artist/:name" component={FicheArtist}/>
                 </Switch>
               </BrowserRouter>
-          </Grid>
+       
       </MuiThemeProvider>
     );
   }
