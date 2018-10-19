@@ -101,7 +101,7 @@ class SimilarArtists extends Component {
 					</Link>
 					</Grid >
 					<Grid container justify="center">
-						<Avatar style={{width:'300px', height:'300px'}} src={this.state.artistInfo.image[3]["#text"]} alt ="img" ></Avatar>
+						<Avatar src={this.state.artistInfo.image[3]["#text"]} alt ="img" ></Avatar>
 					</Grid>
 					<Grid container justify="center">
 						<h2> Artists:</h2>
