@@ -10,7 +10,6 @@ import Header from './Header';
 
 
 import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
 
 const styles = () =>({
 	pictures: {
@@ -54,7 +53,7 @@ class SimilarArtists extends Component {
 		return `${this.apiBase}method=${this.method}&artist=${artist}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
 	
-	componentDidMount(){
+	getArtists(){
 		fetch(this.requestUrlApi(this.props.match.params.name))
 			.then(resp => resp.json())
 			.then(resp => {
@@ -71,21 +70,31 @@ class SimilarArtists extends Component {
 			.then(resp => resp.json())
 			.then(resp => this.setState({artistInfo : resp.artist}))
 	}
-
-	handleClick = () => {
-		this.setState({renderFicheArtist : true});
+	componentDidMount() {
+		this.getArtists()
 	}
-
-
-	handleClickSimilar = (e) => {
-		this.setState({renderFicheArtistSimilar: true});
-		this.setState({index: e.target.id});
+	componentDidUpdate(nextProps){
+		console.log("next props ", nextProps.match.params.name)
+		console.log("this props", this.props.match.params.name);
+		
+		if(nextProps.match.params.name !== this.props.match.params.name){
+			this.getArtists()
+		}
 	}
+	// handleClick = () => {
+	// 	this.setState({renderFicheArtist : true});
+	// }
 
-	handleClickListSimilar = (e) => {
-		this.setState({renderSimilarArtists: true})
-		this.setState({index : e.currentTarget.id})
-	}
+
+	// handleClickSimilar = (e) => {
+	// 	this.setState({renderFicheArtistSimilar: true});
+	// 	this.setState({index: e.target.id});
+	// }
+
+	// handleClickListSimilar = (e) => {
+	// 	this.setState({renderSimilarArtists: true})
+	// 	this.setState({index : e.currentTarget.id})
+	// }
 
 	render() {
 		if(this.state.artists === null || this.state.artistInfo === null)
@@ -129,7 +138,9 @@ class SimilarArtists extends Component {
 									</Grid>
 									<Grid container justify="center">
 									<Link to={`/similar-artist/${element.name}`}>
-										<Button variant="contained" color="primary"  id={i}><h3>Push Me</h3></Button >
+										<Button variant="contained" color="primary"  id={i}>
+										<h3>Push Me</h3>
+										</Button >
 									</Link>
 									</Grid>
 								</div>

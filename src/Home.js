@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Grid, AppBar, Toolbar, InputBase } from '@material-ui/core';
 import SearchIcon from "@material-ui/icons/Search";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Header from './Header';
 
@@ -53,6 +53,10 @@ searchBarDisplay = (event) => {
   // }
 
     render(){
+
+      if(this.state.finalSearch !== null)
+        return <Redirect to={`/similar-artist/${this.state.finalSearch}`} />
+
         const pointer = {cursor: 'pointer'};
 
         const { classes } = this.props;

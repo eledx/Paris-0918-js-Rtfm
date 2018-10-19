@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './Header';
 import Footer from './Footer';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import SimilarArtists from './SimilarArtists';
@@ -92,8 +91,6 @@ constructor() {
 
 
 render() {
-  const { classes } = this.props;
-  const pointer = {cursor: 'pointer'};
   if(this.state.finalSearch !== null)
 
     return <SimilarArtists artistInput={this.state.finalSearch} />
@@ -101,7 +98,7 @@ render() {
     <MuiThemeProvider theme={theme}>
       <Grid container justify= 'center' className="bgHome">
           {/* <Grid item  xs={8}  > */}
-            <BrowserRouter forceRefresh={true}>
+            <BrowserRouter>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/similar-artist/:name" component={SimilarArtists}/>
