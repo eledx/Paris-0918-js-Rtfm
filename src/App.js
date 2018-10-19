@@ -11,15 +11,14 @@ import './App.css';
 
 /* Components Material UI */
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
 
 /* Theme Creation */
 const theme = createMuiTheme({
-  palette:{
-      primary: { main: '#FFFFFF'},
+  palette: {
+    primary: { main: '#FFFFFF' },
   },
-  typography: { 
-      fontFamily: 'Open Sans',
+  typography: {
+    fontFamily: 'Open Sans',
   }
 });
 
@@ -29,15 +28,13 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-       
-              <BrowserRouter>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/similar-artist/:name" component={SimilarArtists}/>
-                  <Route exact path="/fiche-artist/:name" component={FicheArtist}/>
-                </Switch>
-              </BrowserRouter>
-       
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/similar-artist/:name" component={SimilarArtists} />
+            <Route exact path="/fiche-artist/:name" component={FicheArtist} />
+          </Switch>
+        </BrowserRouter>
       </MuiThemeProvider>
     );
   }

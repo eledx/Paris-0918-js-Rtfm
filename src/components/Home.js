@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 /* Components */
@@ -13,94 +13,94 @@ import { withStyles } from '@material-ui/core/styles';
 
 /* Searchbar Style */
 const styles = theme => ({
-  appbar:{
+  appbar: {
     width: '75%',
   },
-  toolbar:{
+  toolbar: {
     minHeight: 45,
   },
-search: {
-  position: "relative",
-  marginLeft: 0,
-  width: "100%",
-},
-searchIcon: {
-  width: 50,
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center"
-},
-inputRoot: {
-  color: "inherit",
-  width: "100%"
-},
-inputInput: {
-  fontSize: 20,
-  paddingTop: theme.spacing.unit,
-  paddingRight: theme.spacing.unit,
-  paddingBottom: theme.spacing.unit,
-  paddingLeft: 60,
-  transition: theme.transitions.create("width"),
-  width: "100%",
-},
-resultAutocomplete: {
-  marginLeft: 48,
-  marginRight: 48,
-  backgroundColor: theme.palette.primary,
-},
+  search: {
+    position: "relative",
+    marginLeft: 0,
+    width: "100%",
+  },
+  searchIcon: {
+    width: 50,
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  inputRoot: {
+    color: "inherit",
+    width: "100%"
+  },
+  inputInput: {
+    fontSize: 20,
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: 60,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+  },
+  resultAutocomplete: {
+    marginLeft: 48,
+    marginRight: 48,
+    backgroundColor: theme.palette.primary,
+  },
 });
 
 class Home extends Component {
-    state = {
-        userInput: '',
-        finalSearch: '',
-        suggestions: [],
-        ShowAutocompletion: false
-      }
+  state = {
+    userInput: '',
+    finalSearch: '',
+    suggestions: [],
+    ShowAutocompletion: false
+  }
 
-// Instructions à exécuter sur le changement de l'input:
-// afficher le nom d'artiste dans la searchbar & appeler l'autocomplétion
+  // Instructions à exécuter sur le changement de l'input:
+  // afficher le nom d'artiste dans la searchbar & appeler l'autocomplétion
   searchBarDisplay = (event) => {
-    this.setState({userInput: event.target.value})
-    if(event.target.value.length !== 0){
+    this.setState({ userInput: event.target.value })
+    if (event.target.value.length !== 0) {
       this.requestAutocompletion(event.target.value)
-      this.setState({ShowAutocompletion:true})
+      this.setState({ ShowAutocompletion: true })
       console.log('searchDisplay', this.state)
     }
     else
-      this.setState({ShowAutocompletion: false})
+      this.setState({ ShowAutocompletion: false })
   }
-  
+
   // Appel de l'API pour utiliser la méthode d'autocomplétion
   requestAutocompletion = (artist) => {
     fetch(`http://audioscrobbler.com/2.0/?method=artist.search&artist=${artist}&limit=5&api_key=af05581a38f69802ba020346115c8834&format=json`)
       .then(resp => resp.json())
-      .then(resp => this.setState({suggestions : resp.results.artistmatches.artist}))
-    }
-  
+      .then(resp => this.setState({ suggestions: resp.results.artistmatches.artist }))
+  }
+
   // Instructions à exécuter sur le clic du bouton submit
   handleSubmit = (event) => {
     event.preventDefault()
-    this.setState({finalSearch: event.target[0].value})
-    this.setState({userInput: event.target[0].value})
-    this.setState({ShowAutocompletion:false})
+    this.setState({ finalSearch: event.target[0].value })
+    this.setState({ userInput: event.target[0].value })
+    this.setState({ ShowAutocompletion: false })
     //console.log('submit', this.state)
   }
 
-    render(){
-      if(this.state.finalSearch.length > 0)
-        return <Redirect to={`/similar-artist/${this.state.finalSearch}`} />
+  render() {
+    if (this.state.finalSearch.length > 0)
+      return <Redirect to={`/similar-artist/${this.state.finalSearch}`} />
 
-      const pointer = {cursor: 'pointer'};
-      const { classes } = this.props;
+    const pointer = { cursor: 'pointer' };
+    const { classes } = this.props;
 
-      return(
+    return (
       <Grid container justify='center' alignItems='center' className="bgHome">
-        <Grid item  xs={8}  >
-          <Header/>
+        <Grid item xs={8}  >
+          <Header />
           <Grid container justify='center' alignItems='center' >
             <AppBar position="static" className={classes.appbar}>
               <Toolbar className={classes.toolbar}>
@@ -111,7 +111,7 @@ class Home extends Component {
 
                   <form onSubmit={this.handleSubmit} className={classes.form}>
                     <InputBase
-                      type="text" 
+                      type="text"
                       placeholder="Your artist..."
                       value={this.state.userInput}
                       onChange={this.searchBarDisplay}
@@ -125,17 +125,17 @@ class Home extends Component {
               </Toolbar>
 
               <div className={classes.resultAutocomplete}>
-                {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => 
-                <Link to={`/similar-artist/${element.name}`}> 
-                  <p className={classes.p} key={i} style={pointer}>{element.name}</p>
-                </Link>
-                    ))}
+                {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) =>
+                  <Link to={`/similar-artist/${element.name}`}>
+                    <p className={classes.p} key={i} style={pointer}>{element.name}</p>
+                  </Link>
+                ))}
               </div>
             </AppBar>
           </Grid>
         </Grid>
       </Grid>)
-    }
+  }
 }
 
 export default withStyles(styles)(Home); 

@@ -8,131 +8,132 @@ import Header from './Header';
 /* Components Material UI */
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = () =>({
+const styles = () => ({
 	pictures: {
-	width: 200,
-	height: 200,
-}
+		width: 200,
+		height: 200,
+	}
 });
 
-const theme = createMuiTheme ({
-	palette : {
-	primary :{main: "#604C8D"},
-	
+const theme = createMuiTheme({
+	palette: {
+		primary: { main: "#604C8D" },
+
 	},
-	
-	typography : {
-	fontSize : 60,
-	fontFamily: "Maiden"},
-	
-	})
+
+	typography: {
+		fontSize: 60,
+		fontFamily: "Maiden"
+	},
+
+})
 
 class SimilarArtists extends Component {
 
-	constructor(props){
-    	super(props);
-    	this.state = { 
-			artists : null,
-			artistInfo : null,
-			renderFicheArtist : false,
-			renderFicheArtistSimilar : false,
+	constructor(props) {
+		super(props);
+		this.state = {
+			artists: null,
+			artistInfo: null,
+			renderFicheArtist: false,
+			renderFicheArtistSimilar: false,
 			index: 0,
 			renderSimilarArtists: false,
 			error: false
 		};
 	}
 
-	requestUrlApi(artist= ""){
-    	this.apiBase = 'http://audioscrobbler.com/2.0/?';
+	requestUrlApi(artist = "") {
+		this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getsimilar';
 		this.limit = '4';
 		return `${this.apiBase}method=${this.method}&artist=${artist}&limit=${this.limit}&api_key=${this.apiKey}&format=json`;
 	}
-	
-	getArtists(){
+
+	getArtists() {
 		fetch(this.requestUrlApi(this.props.match.params.name))
 			.then(resp => resp.json())
 			.then(resp => {
 				console.log("json", resp.similarartists)
-				if(resp.similarartists !== undefined && !resp.error){
+				if (resp.similarartists !== undefined && !resp.error) {
 					console.log("no_error", resp.similarartists.artist)
-					this.setState({artists : resp.similarartists.artist})
-				} else{
+					this.setState({ artists: resp.similarartists.artist })
+				} else {
 					console.log("error")
-					this.setState({error : true})
+					this.setState({ error: true })
 				}
 			})
 		fetch(`http://audioscrobbler.com/2.0/?method=artist.getInfo&artist=${this.props.match.params.name}&limit=1&api_key=af05581a38f69802ba020346115c8834&format=json`)
 			.then(resp => resp.json())
-			.then(resp => this.setState({artistInfo : resp.artist}))
+			.then(resp => this.setState({ artistInfo: resp.artist }))
 	}
 	componentDidMount() {
 		this.getArtists()
 	}
-	componentDidUpdate(nextProps){
+	componentDidUpdate(nextProps) {
 		console.log("next_props ", nextProps.match.params.name)
 		console.log("this_props", this.props.match.params.name);
-		
-		if(nextProps.match.params.name !== this.props.match.params.name){
+
+		if (nextProps.match.params.name !== this.props.match.params.name) {
 			this.getArtists()
 		}
 	}
 
 	render() {
-		
-		if(this.state.artists === null || this.state.artistInfo === null)
-			if(this.state.error === true)
-				return <p style={{color: 'white'}}>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
+
+		if (this.state.artists === null || this.state.artistInfo === null)
+			if (this.state.error === true)
+				return <p style={{ color: 'white' }}>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
 			else
-				return <LoadSpinner/>
+				return <LoadSpinner />
 		return (
 			<MuiThemeProvider theme={theme}>
-			<Grid container justify="center" className="bgHome">
-				<Grid item xs={8} >
-					<Header/>
-					<Grid container justify="center">
-					<Link to={`/fiche-artist/${this.state.artistInfo.name}`}>
-						<h2>{this.state.artistInfo.name}</h2>
-					</Link>
-					</Grid >
-					<Grid container justify="center">
-						<Avatar style={{width:'300px', height:'300px'}} src={this.state.artistInfo.image[3]["#text"]} alt ="img" ></Avatar>
-					</Grid>
-					<Grid container justify="center">
-						<h2> Artists:</h2>
-					</Grid>
-					<Grid container justify="space-between">
-						{this.state.artists.map(
-							(element, i) =>
-								<div key={i}>
-									<Grid container justify="center">
-									<Link to={`/fiche-artist/${element.name}`}>
-										<p id={i}>{element.name}</p>
-									</Link>
-									</Grid>
-									<Grid container justify="center">
-										<Avatar style={{width:'300px', height:'300px'}} src={element.image[3]["#text"]} alt="img"  ></Avatar>
-									</Grid>
-									<Grid container justify="center">
-									<Link to={`/similar-artist/${element.name}`}>
-										<Button variant="contained" color="primary"  id={i}>
-										<h3>Push Me</h3>
-										</Button >
-									</Link>
-									</Grid>
-								</div>
-						)}
+				<Grid container justify="center" className="bgHome">
+					<Grid item xs={8} >
+						<Header />
+						<Grid container justify="center">
+							<Link to={`/fiche-artist/${this.state.artistInfo.name}`}>
+								<h2>{this.state.artistInfo.name}</h2>
+							</Link>
+						</Grid >
+						<Grid container justify="center">
+							<Avatar style={{ width: '300px', height: '300px' }} src={this.state.artistInfo.image[3]["#text"]} alt="img" ></Avatar>
+						</Grid>
+						<Grid container justify="center">
+							<h2> Artists:</h2>
+						</Grid>
+						<Grid container justify="space-between">
+							{this.state.artists.map(
+								(element, i) =>
+									<div key={i}>
+										<Grid container justify="center">
+											<Link to={`/fiche-artist/${element.name}`}>
+												<p id={i}>{element.name}</p>
+											</Link>
+										</Grid>
+										<Grid container justify="center">
+											<Avatar style={{ width: '300px', height: '300px' }} src={element.image[3]["#text"]} alt="img"  ></Avatar>
+										</Grid>
+										<Grid container justify="center">
+											<Link to={`/similar-artist/${element.name}`}>
+												<Button variant="contained" color="primary" id={i}>
+													<h3>Push Me</h3>
+												</Button >
+											</Link>
+										</Grid>
+									</div>
+							)}
+						</Grid>
 					</Grid>
 				</Grid>
-			</Grid>
-		</MuiThemeProvider>
-	);
-}
+			</MuiThemeProvider>
+		);
+	}
 }
 
-export default  withStyles(styles)(SimilarArtists);
+export default withStyles(styles)(SimilarArtists);
