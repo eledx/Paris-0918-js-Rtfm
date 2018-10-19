@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+
+/* Components */
 import LoadSpinner from './LoadSpinner';
 import MusicPlayer from 'react-responsive-music-player';
 
+/* Components Material UI */
 import { Grid } from '@material-ui/core';
-
 
 class Tracks extends Component {
 	constructor(props) {

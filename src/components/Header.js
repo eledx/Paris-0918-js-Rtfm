@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import {Typography, Grid} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
+/* Components Material UI */
+import { Typography, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+
 
 
 const stylesH1 = withStyles => ({
@@ -16,7 +20,7 @@ const stylesH1 = withStyles => ({
     link:{
         textDecoration: 'none',
         '&:hover': {
-            color: 'transparent'}
+            color: 'transparent'},
     }
 });
 
@@ -30,7 +34,7 @@ class Header extends Component{
             
             <Grid container justify="center">
                 <header className={this.props.classes.HeaderContainer}>
-                    <a href="/" titile="home" className={this.props.classes.link}><Typography variant='h1' className={this.props.classes.HeaderTitle}>RTFM</Typography></a>
+                    <Link to={`/`} className={this.props.classes.link}><Typography variant='h1' className={this.props.classes.HeaderTitle}>RTFM</Typography></Link>
                 </header>
             </Grid>
         );

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+
+/* Components */
 import ArtistBio from './ArtistBio';
 import ArtistConcerts from './ArtistConcerts';
 import Tracks from './Tracks';
 import Header from './Header';
-import Footer from './Footer';
+
+/* CSS */ 
 import './FicheArtist.css';
 
+/* Components Material UI */
 import { Grid } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -30,7 +34,6 @@ class FicheArtist extends Component {
 						<ArtistConcerts artistName={this.props.match.params.name} />
 						<ArtistBio artistName={this.props.match.params.name} />
 						<Tracks artistName={this.props.match.params.name} />
-						<Footer />
 					</Grid>
 				</Grid>
 			</MuiThemeProvider>

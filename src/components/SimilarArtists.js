@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import FicheArtist from './FicheArtist';
+import { Link } from 'react-router-dom';
+
+/* Components */
 import LoadSpinner from './LoadSpinner';
+import Header from './Header';
+
+/* Components Material UI */
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { Link } from 'react-router-dom';
-import Header from './Header';
-
-
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = () =>({
@@ -57,12 +58,12 @@ class SimilarArtists extends Component {
 		fetch(this.requestUrlApi(this.props.match.params.name))
 			.then(resp => resp.json())
 			.then(resp => {
-				//console.log("json", resp.similarartists)
+				console.log("json", resp.similarartists)
 				if(resp.similarartists !== undefined && !resp.error){
-					//console.log("tata", resp.similarartists.artist)
+					console.log("no_error", resp.similarartists.artist)
 					this.setState({artists : resp.similarartists.artist})
 				} else{
-					//console.log("tutu")
+					console.log("error")
 					this.setState({error : true})
 				}
 			})
@@ -74,40 +75,21 @@ class SimilarArtists extends Component {
 		this.getArtists()
 	}
 	componentDidUpdate(nextProps){
-		console.log("next props ", nextProps.match.params.name)
-		console.log("this props", this.props.match.params.name);
+		console.log("next_props ", nextProps.match.params.name)
+		console.log("this_props", this.props.match.params.name);
 		
 		if(nextProps.match.params.name !== this.props.match.params.name){
 			this.getArtists()
 		}
 	}
-	// handleClick = () => {
-	// 	this.setState({renderFicheArtist : true});
-	// }
-
-
-	// handleClickSimilar = (e) => {
-	// 	this.setState({renderFicheArtistSimilar: true});
-	// 	this.setState({index: e.target.id});
-	// }
-
-	// handleClickListSimilar = (e) => {
-	// 	this.setState({renderSimilarArtists: true})
-	// 	this.setState({index : e.currentTarget.id})
-	// }
 
 	render() {
+		
 		if(this.state.artists === null || this.state.artistInfo === null)
 			if(this.state.error === true)
-				return <p>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
+				return <p style={{color: 'white'}}>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
 			else
 				return <LoadSpinner/>
-		if(this.state.renderFicheArtist === true)
-			return <FicheArtist artistName={this.state.artistInfo.name} />
-		if(this.state.renderFicheArtistSimilar === true && this.state.index !== null)
-			return <FicheArtist artistName={this.state.artists[this.state.index].name} />
-		if(this.state.renderSimilarArtists === true && this.state.index !== null)
-			return <SimilarArtists artistInput={this.state.artists[this.state.index].name} />
 		return (
 			<MuiThemeProvider theme={theme}>
 			<Grid container justify="center">

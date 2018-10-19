@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Reenie+Beanie');
 @font-face {
     font-family: 'textTrash';
-    src: url('./font/Old_Press.ttf');
+    src: url('../font/Old_Press.ttf');
 }
 @font-face {
     font-family: 'stamp';
-    src: url('./font/RUBBERSTAMP.otf');
+    src: url('../font/RUBBERSTAMP.otf');
 }
 /* Background page artist */
 .backgroundDisc{
