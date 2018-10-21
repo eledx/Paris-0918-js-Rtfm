@@ -13,7 +13,8 @@
 }
 
 .bgHome{
-  height: 100vh;
+  min-height: 100vh;
   background: url('./img/band-silhouette.jpg') no-repeat center center;
   background-size: cover;
+  background-attachment: fixed;
 }
