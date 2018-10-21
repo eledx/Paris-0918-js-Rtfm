@@ -12,13 +12,20 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = () => ({
-})
-	
-
-
-
-
+const styles = {
+	pictures: {
+		width: 250,
+		height: 250,
+	},
+	artists: {
+		fontSize : 30,
+		fontFamily: "maiden",
+		marginTop: 50,
+		marginBottom: 50,
+		width: '100%',
+		maxWidth: 500,
+	}
+}
 
 
 class SimilarArtists extends Component {
@@ -82,46 +89,43 @@ class SimilarArtists extends Component {
 				return <LoadSpinner />
 		return (
 			
-				<Grid container justify="center" className="bgHome">
-					<Grid item xs={8} >
-						<Header />
-						<Grid>
-							<Link to={`/fiche-artist/${this.state.artistInfo.name}`}>
-								<h2>{this.state.artistInfo.name}</h2>
-							</Link>
-						</Grid >
-						<Grid>
-							<Avatar src={this.state.artistInfo.image[3]["#text"]} alt="img" ></Avatar>
-						</Grid>
-						<Grid >
-							<h2> Artists:</h2>
-						</Grid>
-						<Grid>
-							{this.state.artists.map(
-								(element, i) =>
-									<div key={i}>
-										<Grid >
-											<Link to={`/fiche-artist/${element.name}`}>
-												<p id={i}>{element.name}</p>
-											</Link>
-										</Grid>
-										<Grid >
-											<Avatar src={element.image[3]["#text"]} alt="img"  ></Avatar>
-										</Grid>
-										<Grid>
-											<Link to={`/similar-artist/${element.name}`}>
-												<Button variant="contained" color="primary" id={i}>
-													<h3>Push Me</h3>
-												</Button >
-											</Link>
-										</Grid>
-									</div>
-							)}
-						</Grid>
-
-					</Grid>
+			<Grid container justify="center" >
+			<Grid item xs container sm={8} >
+				
+				<Grid container justify="center">
+				<Grid item>
+					<Typography color="primary" onClick={this.handleClick} className={classes.artists}>{this.state.artistInfo.name}</Typography>
+					<Avatar src={this.state.artistInfo.image[3]["#text"]} alt ="img" className={classes.pictures}></Avatar>
 				</Grid>
-			
+				</Grid>
+				
+				<Grid container justify="center">
+				<Grid item>
+					<Typography color="secondary" className={classes.artists}> Artists:</Typography>
+				</Grid>
+				</Grid>
+				
+				
+				<Grid container justify="space-between">
+
+					{this.state.artists.map(
+						(element, i) =>
+							<div key={i}>
+									<Grid item xs>
+									<Typography onClick={this.handleClickSimilar} id={i}>{element.name}</Typography>
+									</Grid>
+									<Grid item xs>
+									<Avatar src={element.image[3]["#text"]} alt="img" className={classes.pictures} ></Avatar>
+									</Grid>
+									<Grid item xs>
+									<Button variant="contained" color="primary" onClick={this.handleClickListSimilar} id={i}><Typography>Push Me</Typography></Button >
+								</Grid>
+								
+							</div>
+					)}</Grid>
+				
+			</Grid>
+		</Grid>
 		);
 	}
 }
