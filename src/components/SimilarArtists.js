@@ -6,27 +6,84 @@ import LoadSpinner from './LoadSpinner';
 import Header from './Header';
 
 /* Components Material UI */
-import Grid from '@material-ui/core/Grid';
+import {Grid, Typography} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
-const styles = {
-	pictures: {
-		width: 250,
-		height: 250,
+
+
+/*css*/
+import "./SimilarArtists.css";
+
+const styles = () => ({
+	avatar: {
+		width: 350,
+		height:350,
+		boxShadow: '0px 6px 0px 7px rgba(0, 0, 0, 0.5)',
 	},
-	artists: {
-		fontSize : 30,
-		fontFamily: "maiden",
-		marginTop: 50,
-		marginBottom: 50,
-		width: '100%',
-		maxWidth: 500,
+	avatarCard:{
+		width: 200,
+		height: 200,
+		margin:15,
+		boxShadow: '0px 3px 0px 5px rgba(0, 0, 0, 0.5)',
+	},
+	card:{
+		margin: 36,
+		fontSize: 20,
+		maxWidht: 20,
+		background:'linear-gradient(45deg, #0f0202 30%, #860203 90%)',
+		borderRadius: 350,
+		maxWidth:230,
+		minWith: 230,
+		boxShadow: '0px 5px 0px 7px rgba(0, 0, 0, 0.5)',
+	},
+	button:{
+		background: 'linear-gradient(45deg,#490303 30%, #FF8E53 90%)',
+		borderRadius: 30,
+		border: 0,
+		color: 'white',
+		height: 48,
+		padding: '0 40px',
+		marginBottom:36,
+	},
+	artistTitle1:{
+		fontFamily: 'journal',
+		fontSize:100,
+		color:'white',
+		textAlign:"center",
+		textShadow: '5px 5px rgba(0,0,0, 1)',
+	},
+	artistTitle:{
+		fontFamily: 'journal',
+		fontSize:50,
+		color:'white',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		display: '-webkit-box',
+		WebkitLineClamp:1,
+		WebkitBoxOrient:'vertical',
+		textShadow: '5px 5px rgba(0,0,0, 1)',
+		textAlign:"center",
+	},
+	artistTitle2:{
+		fontFamily: 'journal',
+		fontSize:50,
+		color:'white',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		display: '-webkit-box',
+		WebkitLineClamp:1,
+		WebkitBoxOrient:'vertical',
+		textShadow: '5px 5px rgba(0,0,0, 1)',
+		textAlign:"center",
 	}
-}
-
+	})
 
 class SimilarArtists extends Component {
 
@@ -81,7 +138,7 @@ class SimilarArtists extends Component {
 	}
 
 	render() {
-
+		const { classes } = this.props;
 		if (this.state.artists === null || this.state.artistInfo === null)
 			if (this.state.error === true)
 				return <p style={{ color: 'white' }}>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
@@ -89,45 +146,54 @@ class SimilarArtists extends Component {
 				return <LoadSpinner />
 		return (
 			
-			<Grid container justify="center" >
-			<Grid item xs container sm={8} >
-				
-				<Grid container justify="center">
-				<Grid item>
-					<Typography color="primary" onClick={this.handleClick} className={classes.artists}>{this.state.artistInfo.name}</Typography>
-					<Avatar src={this.state.artistInfo.image[3]["#text"]} alt ="img" className={classes.pictures}></Avatar>
-				</Grid>
-				</Grid>
-				
-				<Grid container justify="center">
-				<Grid item>
-					<Typography color="secondary" className={classes.artists}> Artists:</Typography>
-				</Grid>
-				</Grid>
-				
-				
-				<Grid container justify="space-between">
-
-					{this.state.artists.map(
-						(element, i) =>
-							<div key={i}>
-									<Grid item xs>
-									<Typography onClick={this.handleClickSimilar} id={i}>{element.name}</Typography>
-									</Grid>
-									<Grid item xs>
-									<Avatar src={element.image[3]["#text"]} alt="img" className={classes.pictures} ></Avatar>
-									</Grid>
-									<Grid item xs>
-									<Button variant="contained" color="primary" onClick={this.handleClickListSimilar} id={i}><Typography>Push Me</Typography></Button >
+				<Grid container justify='center' alignItems='center' className="bgHome">
+					<Header />
+					<Grid container justify='center' alignItems='center'  xs={8} >
+					<Grid container justify='center' alignItems='center' direction="column" >
+							<Grid item>
+								<Avatar src={this.state.artistInfo.image[3]["#text"]} alt="img" className={classes.avatar}></Avatar>
+							</Grid>
+							<Grid item>
+								<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
+									<Typography className={classes.artistTitle1}>{this.state.artistInfo.name}</Typography>
+								</Link>
 								</Grid>
 								
-							</div>
-					)}</Grid>
-				
-			</Grid>
-		</Grid>
-		);
+							<Typography className={classes.artistTitle2}>Wanna C some more, dude ?</Typography>
+							</Grid>
+							{this.state.artists.map(
+								(element, i) =>
+								<div key={i}>
+									<Card className={classes.card}>
+							<Grid container alignItems='center' direction="column">
+								<CardActionArea>
+								<Grid item className={classes.item}>	
+								<Avatar src={element.image[3]["#text"]} alt="img" className={classes.avatarCard} ></Avatar>
+								</Grid>
+								<CardContent>
+							<Grid item className={classes.item}>	
+								<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
+								<p id={i} className={classes.artistTitle} >{element.name}</p>
+								</Link>
+							</Grid>
+								</CardContent>
+								</CardActionArea>
+								<CardActions >
+							<Grid item className={classes.item} >	
+								<Link to={`/similar-artist/${element.name}`}>
+									<Button variant="contained" color="primary" className={classes.button}>
+									<AddIcon />
+									</Button >
+									</Link>
+									</Grid>
+								</CardActions>
+								</Grid>
+								</Card>
+								</div>
+							)}
+						</Grid>
+				</Grid>
+			);
 	}
 }
-
 export default withStyles(styles)(SimilarArtists);
