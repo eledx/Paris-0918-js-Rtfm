@@ -21,6 +21,7 @@ const theme = createMuiTheme({
 	},
 });
 
+/*a tester en fonction (composant bete)*/
 class FicheArtist extends Component {
 
 	render() {

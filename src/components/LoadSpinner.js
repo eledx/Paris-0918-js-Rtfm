@@ -9,11 +9,8 @@ const override = css`
 `;
 
 class LoadSpinner extends Component {
-	constructor(props) {
-	    super(props);
-	    this.state = {
+	state = {
 		loading: true
-	    }
 	}
 
 	render() {

@@ -8,9 +8,8 @@ import MusicPlayer from 'react-responsive-music-player';
 import { Grid } from '@material-ui/core';
 
 class Tracks extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { tracks: null };
+	state = { 
+		tracks: null
 	}
 
 	requestUrlApi() {

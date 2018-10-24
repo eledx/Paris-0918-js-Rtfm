@@ -18,13 +18,10 @@ const theme = createMuiTheme({
 });
 
 class ArtistBio extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			artists: null
-		};
-
+	state = {
+		artists: null
 	}
+
 	requestUrlApi() {
 		this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
@@ -39,6 +36,7 @@ class ArtistBio extends Component {
 			.then(resp => resp.json())
 			.then(resp => this.setState({ artists: resp.artist }))
 	}
+	
 	render() {
 		if (this.state.artists === null) {
 			return <LoadSpinner />;
