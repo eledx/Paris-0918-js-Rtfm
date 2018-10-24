@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 /* Components Material UI */
@@ -23,20 +23,17 @@ const stylesH1 = withStyles => ({
     }
 });
 
-/*a tester en fonction (composant bete)*/
-class Header extends Component{
-    
-    render(){
-        return(
-            <Grid container justify="center">
-                <header className={this.props.classes.HeaderContainer}>
-                    <Link to={`/`} className={this.props.classes.link}>
-                        <Typography variant='h1' className={this.props.classes.HeaderTitle}>RTFM</Typography>
-                    </Link>
-                </header>
-            </Grid>
-        );
-    }
+
+const Header = (props) => {
+    return(
+        <Grid container justify="center">
+            <header className={props.classes.HeaderContainer}>
+                <Link to={`/`} className={props.classes.link}>
+                    <Typography variant='h1' className={props.classes.HeaderTitle}>RTFM</Typography>
+                </Link>
+            </header>
+        </Grid>
+    );
 }
 
 export default withStyles(stylesH1)(Header);

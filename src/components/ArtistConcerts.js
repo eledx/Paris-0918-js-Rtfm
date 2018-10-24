@@ -58,8 +58,8 @@ class ArtistConcerts extends Component {
 								}
 							</li>
 							{element.performance.map(
-								(artisteName) =>
-								<li>{artisteName.displayName}</li>
+								(artisteName, index2) =>
+								<li key={index2}>{artisteName.displayName}</li>
 							)}
 							<li className={this.props.classes.li}>{element.venue.displayName}</li>
 							<li className={this.props.classes.li}> {element.location.city.replace(", "," - ")}</li>

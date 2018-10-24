@@ -20,7 +20,7 @@ class Tracks extends Component {
 	}
 
 	componentDidMount() {
-		console.log("tracks" , this.requestUrlApi() )
+		//console.log("tracks" , this.requestUrlApi() )
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
 			.then(resp => this.setState({ tracks: resp.data }))

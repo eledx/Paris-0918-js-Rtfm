@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 /* Components Pages */
@@ -22,10 +22,7 @@ const theme = createMuiTheme({
   }
 });
 
-/*a tester en fonction (composant bete)*/
-class App extends Component {
-
-  render() {
+const App = (props)=> {
     return (
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
@@ -37,7 +34,6 @@ class App extends Component {
         </BrowserRouter>
       </MuiThemeProvider>
     );
-  }
 }
 
 export default App;
