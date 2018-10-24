@@ -56,7 +56,7 @@ class ArtistBio extends Component {
 						</Grid>
 					</Grid>
 					<Grid item xs={12} md={6} className="rotateText">
-						<Typography variant="body1" color="primary" align='justify'>{this.state.artists.bio.summary.replace(regex, '')}</Typography>
+						<Typography variant="body1" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Typography>
 					</Grid>
 				</Grid>
 			</MuiThemeProvider>

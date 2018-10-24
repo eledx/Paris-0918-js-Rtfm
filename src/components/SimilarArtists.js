@@ -156,14 +156,12 @@ class SimilarArtists extends Component {
 								<Card className={classes.card}>
 									<Grid container alignItems='center' direction="column">
 										<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
-										<CardActionArea>
-											<Avatar src={element.image[3]["#text"]} alt={element.name} className={classes.avatarCard} ></Avatar>
-											<CardContent>
-												
+											<CardActionArea>
+												<Avatar src={element.image[3]["#text"]} alt={element.name} className={classes.avatarCard} ></Avatar>
+												<CardContent>
 													<h2 id={i} className={classes.artistTitle} >{element.name}</h2>
-												
-											</CardContent>
-										</CardActionArea>
+												</CardContent>
+											</CardActionArea>
 										</Link>
 										<CardActions >
 											<Link to={`/similar-artist/${element.name}`}>

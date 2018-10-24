@@ -52,7 +52,7 @@
     -moz-transform: rotate(-10deg);
 }
 .effectDiapo span:after {
-    color: #aa0000;
+    color: #fffb00;
     font-size: 40px;
     content: attr(title);
     font-family: 'stamp';
@@ -172,7 +172,6 @@
     transform: rotate(8deg);
     line-height: 1;
     padding: 24px;
-    background: #604C8D;
 }
 /* Fin Component ArtistBio */
 
