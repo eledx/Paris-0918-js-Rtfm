@@ -184,7 +184,7 @@
 
 
 .player-container{
-    background: url("https://stephaneaguileravideaste.boutique/WebRoot/Store9/Shops/bdf3a82d-4a2f-4721-839a-2e256f94830b/588A/3670/1919/8A94/91FE/0A48/351F/5440/disque-vinyls-12-macarons-vierges_ml.jpg");
+    /*background: url("https://stephaneaguileravideaste.boutique/WebRoot/Store9/Shops/bdf3a82d-4a2f-4721-839a-2e256f94830b/588A/3670/1919/8A94/91FE/0A48/351F/5440/disque-vinyls-12-macarons-vierges_ml.jpg");*/
     padding: 68px;
     border-radius: 50%;
     box-shadow: 4px 3px 28px #AA9;
@@ -195,24 +195,43 @@
 
 
     
-        animation: App-logo-spin infinite 20s linear;
+      /*  animation: App-logo-spin infinite 20s linear;*/
        /* height: 80px;*/
 }
 
-@keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+/*@keyframes App-logo-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }*/
 
 
 .cover-container{display: none;}
 .music-info{font-size: 12px;}
 .music-info h2, .music-info h3{margin: 5px 0;}
 .music-info h3{font-style: italic;}
-.music-info .title, .music-info .artist, .icon{color: white !important;}
+.music-info .title, .music-info .artist, .icon{color: #fffb00 !important;}
 .progress-container .progress{background-color: #aa0000 !important;}
-.progress-container{background:white !important}
+.progress-container{background:#fffb00 !important}
 .player-container .info-and-control .progress-container{height:2px !important;}
 .player-container .info-and-control .control-container{margin-top:15px;}
 .controls{margin-left: 20px;}
 /* Player Tracks */
+
+
+
+.info-and-control{
+    z-index: 1;
+}
+.activateDisc{
+    width: 243px;
+    background-size: cover;
+    border-radius: 50%;
+    height: 246px;
+    position: absolute;
+    animation: disc-spin infinite 20s linear;
+  }
+  
+  @keyframes disc-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
