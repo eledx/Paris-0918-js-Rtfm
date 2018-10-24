@@ -6,7 +6,6 @@ import { Typography, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 
-
 const stylesH1 = withStyles => ({
     HeaderContainer:{
         marginTop: 55,
@@ -24,22 +23,20 @@ const stylesH1 = withStyles => ({
     }
 });
 
-
+/*a tester en fonction (composant bete)*/
 class Header extends Component{
-
-
     
     render(){
         return(
-            
             <Grid container justify="center">
                 <header className={this.props.classes.HeaderContainer}>
-                    <Link to={`/`} className={this.props.classes.link}><Typography variant='h1' className={this.props.classes.HeaderTitle}>RTFM</Typography></Link>
+                    <Link to={`/`} className={this.props.classes.link}>
+                        <Typography variant='h1' className={this.props.classes.HeaderTitle}>RTFM</Typography>
+                    </Link>
                 </header>
             </Grid>
         );
     }
-
 }
 
 export default withStyles(stylesH1)(Header);

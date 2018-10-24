@@ -12,9 +12,6 @@ import './App.css';
 /* Components Material UI */
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-
-
-
 /* Theme Creation */
 const theme = createMuiTheme({
   palette: {
@@ -25,7 +22,7 @@ const theme = createMuiTheme({
   }
 });
 
-
+/*a tester en fonction (composant bete)*/
 class App extends Component {
 
   render() {

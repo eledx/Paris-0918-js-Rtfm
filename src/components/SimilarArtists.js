@@ -81,20 +81,13 @@ const styles = () => ({
 
 class SimilarArtists extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			artists: null,
-			artistInfo: null,
-			renderFicheArtist: false,
-			renderFicheArtistSimilar: false,
-			index: 0,
-			renderSimilarArtists: false,
-			error: false
-		};
+	state = {
+		artists: null,  //Liste d'artistes similaires (image/nom)
+		artistInfo: null, //info artiste recherché (image/nom)
+		error: false  //gestion recherche improbable
 	}
 
-	requestUrlApi(artist = "") {
+	requestUrlApi(artist) {
 		this.apiBase = 'http://audioscrobbler.com/2.0/?';
 		this.apiKey = 'af05581a38f69802ba020346115c8834';
 		this.method = 'artist.getsimilar';
@@ -106,12 +99,12 @@ class SimilarArtists extends Component {
 		fetch(this.requestUrlApi(this.props.match.params.name))
 			.then(resp => resp.json())
 			.then(resp => {
-				console.log("json", resp.similarartists)
+				//console.log("json", resp.similarartists)
 				if (resp.similarartists !== undefined && !resp.error) {
-					console.log("no_error", resp.similarartists.artist)
+					//console.log("no_error", resp.similarartists.artist)
 					this.setState({ artists: resp.similarartists.artist })
 				} else {
-					console.log("error")
+					//console.log("error")
 					this.setState({ error: true })
 				}
 			})
@@ -122,65 +115,66 @@ class SimilarArtists extends Component {
 	componentDidMount() {
 		this.getArtists()
 	}
-	componentDidUpdate(nextProps) {
-		console.log("next_props ", nextProps.match.params.name)
-		console.log("this_props", this.props.match.params.name);
+	
+	componentDidUpdate(prevProps) {
+		//console.log("prev_props ", prevProps.match.params.name)
+		//console.log("this_props", this.props.match.params.name);
 
-		if (nextProps.match.params.name !== this.props.match.params.name) {
+		if (prevProps.match.params.name !== this.props.match.params.name) {
 			this.getArtists()
 		}
 	}
 
 	render() {
-		const { classes } = this.props;
-		if (this.state.artists === null || this.state.artistInfo === null)
-			if (this.state.error === true)
+		const { classes } = this.props; //material_ui
+
+		if (this.state.artists === null || this.state.artistInfo === null) //attente des datas
+			if (this.state.error === true) //pas de data car recherche improbable 
 				return <p style={{ color: 'white' }}>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
 			else
 				return <LoadSpinner />
 		return (
-			
 				<Grid container justify='center' alignItems='center' className="bgHome">
 					<Header />
 					<Grid item xs={8} >
-					<Grid container justify='center' alignItems='center'   >
-					<Grid container justify='center' alignItems='center' direction="column" >
-							<Grid item>
-								<Avatar src={this.state.artistInfo.image[3]["#text"]} alt="img" className={classes.avatar}></Avatar>
-							</Grid>
-							<Grid item>
-								<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
-									<h2 className={classes.artistTitle1}>{this.state.artistInfo.name}</h2>
-								</Link>
+						<Grid container justify='center' alignItems='center'   >
+							<Grid container justify='center' alignItems='center' direction="column" >
+								<Grid item>
+									<Avatar src={this.state.artistInfo.image[3]["#text"]} alt={this.state.artistInfo.name} className={classes.avatar}></Avatar>
 								</Grid>
-							<h2 className={classes.artistTitle2}>Wanna C some more, dude ?</h2>
+								<Grid item>
+									<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
+										<h2 className={classes.artistTitle1}>{this.state.artistInfo.name}</h2>
+									</Link>
+								</Grid>
+								<h2 className={classes.artistTitle2}>Wanna C some more, dude ?</h2>
 							</Grid>
 							{this.state.artists.map(
 								(element, i) =>
 								<div key={i}>
-						<Card className={classes.card}>
-							<Grid container alignItems='center' direction="column">
-								<CardActionArea>
-								<Avatar src={element.image[3]["#text"]} alt="img" className={classes.avatarCard} ></Avatar>
-								<CardContent>
-								<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
-								<h2 id={i} className={classes.artistTitle} >{element.name}</h2>
-								</Link>
-								</CardContent>
-								</CardActionArea>
-								<CardActions >
-								<Link to={`/similar-artist/${element.name}`}>
-									<Button variant="contained" color="primary" className={classes.button}>
-									<AddIcon />
-									</Button >
-									</Link>
-									</CardActions>
-								</Grid>
-								</Card>
+									<Card className={classes.card}>
+										<Grid container alignItems='center' direction="column">
+											<CardActionArea>
+												<Avatar src={element.image[3]["#text"]} alt={element.name} className={classes.avatarCard} ></Avatar>
+												<CardContent>
+													<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
+														<h2 id={i} className={classes.artistTitle} >{element.name}</h2>
+													</Link>
+												</CardContent>
+											</CardActionArea>
+											<CardActions >
+												<Link to={`/similar-artist/${element.name}`}>
+													<Button variant="contained" color="primary" className={classes.button}>
+														<AddIcon />
+													</Button >
+												</Link>
+											</CardActions>
+										</Grid>
+									</Card>
 								</div>
 							)}
 						</Grid>
-						</Grid>
+					</Grid>
 				</Grid>
 			);
 	}

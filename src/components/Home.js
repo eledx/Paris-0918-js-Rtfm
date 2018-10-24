@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 /* Searchbar Style */
 const styles = theme => ({
   appbar: {
-    width: '75%',
+    width: '60%',
   },
   toolbar: {
     minHeight: 45,
@@ -55,10 +55,10 @@ const styles = theme => ({
 
 class Home extends Component {
   state = {
-    userInput: '',
-    finalSearch: '',
-    suggestions: [],
-    ShowAutocompletion: false
+    userInput: '',  //contenu de la searchbar
+    finalSearch: '', //resultat au submit ou au click sur la suggestion
+    suggestions: [],  //stockage des suggestions
+    ShowAutocompletion: false //gestion des suggestions vides
   }
 
   // Instructions à exécuter sur le changement de l'input:
@@ -68,7 +68,7 @@ class Home extends Component {
     if (event.target.value.length !== 0) {
       this.requestAutocompletion(event.target.value)
       this.setState({ ShowAutocompletion: true })
-      console.log('searchDisplay', this.state)
+      //console.log('searchDisplay', this.state)
     }
     else
       this.setState({ ShowAutocompletion: false })
@@ -85,8 +85,8 @@ class Home extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.setState({ finalSearch: event.target[0].value })
-    this.setState({ userInput: event.target[0].value })
-    this.setState({ ShowAutocompletion: false })
+    //this.setState({ userInput: event.target[0].value })  verifier si pas de bugs sans. Si oui, a virer. 
+    //this.setState({ ShowAutocompletion: false }) (passage par props avant routing)
     //console.log('submit', this.state)
   }
 
