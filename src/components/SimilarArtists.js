@@ -45,11 +45,10 @@ const styles = () => ({
 	},
 	button:{
 		background: 'linear-gradient(45deg,#490303 30%, #FF8E53 90%)',
-		borderRadius: 50,
-		border: 0,
+		borderRadius: 60,
 		color: 'white',
-		height: 58,
-		padding: '0 40px',
+		height: 68,
+		padding: '0 30px',
 		marginBottom:36,
 	},
 	artistTitle1:{
@@ -60,15 +59,15 @@ const styles = () => ({
 		textShadow: '5px 5px rgba(0,0,0, 1)',
 	},
 	artistTitle:{
-		display:"flex",
+		
 		fontFamily: 'journal',
 		fontSize:50,
 		color:'white',
-		maxHeight:100,
-		minHeight:100,
+		maxHeight:80,
+		minHeight:80,
         textShadow: '5px 5px rgba(0,0,0, 1)',
 		textAlign:"center",
-		alignItems:"center",
+		
 	},
 	artistTitle2:{
 		fontFamily: 'journal',
@@ -134,49 +133,50 @@ class SimilarArtists extends Component {
 			else
 				return <LoadSpinner />
 		return (
-				<Grid container justify='center' alignItems='center' className="bgHome">
-					<Header />
-					<Grid item xs={8} >
-						<Grid container justify='center' alignItems='center'   >
-							<Grid container justify='center' alignItems='center' direction="column" >
-								<Grid item>
-									<Avatar src={this.state.artistInfo.image[3]["#text"]} alt={this.state.artistInfo.name} className={classes.avatar}></Avatar>
-								</Grid>
-								<Grid item>
-									<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
-										<h2 className={classes.artistTitle1}>{this.state.artistInfo.name}</h2>
-									</Link>
-								</Grid>
-								<h2 className={classes.artistTitle2}>Wanna C some more, dude ?</h2>
+			<Grid container justify='center' alignItems='center' className="bgHome">
+				<Header />
+				<Grid item xs={8} >
+					<Grid container justify='center' alignItems='center'   >
+						<Grid container justify='center' alignItems='center' direction="column" >
+							<Grid item>
+								<Avatar src={this.state.artistInfo.image[3]["#text"]} alt={this.state.artistInfo.name} className={classes.avatar}></Avatar>
 							</Grid>
-							{this.state.artists.map(
-								(element, i) =>
-								<div key={i}>
-									<Card className={classes.card}>
-										<Grid container alignItems='center' direction="column">
-											<CardActionArea>
-												<Avatar src={element.image[3]["#text"]} alt={element.name} className={classes.avatarCard} ></Avatar>
-												<CardContent>
-													<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
-														<h2 id={i} className={classes.artistTitle} >{element.name}</h2>
-													</Link>
-												</CardContent>
-											</CardActionArea>
-											<CardActions >
-												<Link to={`/similar-artist/${element.name}`}>
-													<Button variant="contained" color="primary" className={classes.button}>
-														<AddIcon />
-													</Button >
-												</Link>
-											</CardActions>
-										</Grid>
-									</Card>
-								</div>
-							)}
+							<Grid item>
+								<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
+									<h2 className={classes.artistTitle1}>{this.state.artistInfo.name}</h2>
+								</Link>
+							</Grid>
+							<h2 className={classes.artistTitle2}>Wanna C some more, dude ?</h2>
 						</Grid>
+						{this.state.artists.map(
+							(element, i) =>
+							<div key={i}>
+								<Card className={classes.card}>
+									<Grid container alignItems='center' direction="column">
+										<CardActionArea>
+											<Avatar src={element.image[3]["#text"]} alt={element.name} className={classes.avatarCard} ></Avatar>
+											<CardContent>
+												<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
+													<h2 id={i} className={classes.artistTitle} >{element.name}</h2>
+												</Link>
+											</CardContent>
+										</CardActionArea>
+										<CardActions >
+											<Link to={`/similar-artist/${element.name}`}>
+												<Button variant="contained" color="primary" className={classes.button}>
+													<AddIcon />
+												</Button >
+											</Link>
+										</CardActions>
+									</Grid>
+								</Card>
+							</div>
+						)}
 					</Grid>
 				</Grid>
-			);
+			</Grid>
+		);
 	}
 }
+
 export default withStyles(styles)(SimilarArtists);
