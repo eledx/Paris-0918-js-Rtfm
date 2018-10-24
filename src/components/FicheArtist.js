@@ -24,11 +24,9 @@ const theme = createMuiTheme({
 class FicheArtist extends Component {
 
 	render() {
-		//console.log("ficheArtist.js", this.props.artistName)
 		return (
 			<MuiThemeProvider theme={theme}>
-
-				<Grid container justify='center' className="backgroundDisc">
+				<Grid container justify='center' className="bgHome">
 					<Grid item xs={8}>
 						<Header />
 						<ArtistConcerts artistName={this.props.match.params.name} />
