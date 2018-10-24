@@ -6,7 +6,7 @@ import LoadSpinner from './LoadSpinner';
 import Header from './Header';
 
 /* Components Material UI */
-import {Grid, Typography} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,8 +23,8 @@ import "./SimilarArtists.css";
 
 const styles = () => ({
 	avatar: {
-		width: 350,
-		height:350,
+		width: 300,
+		height:300,
 		boxShadow: '0px 6px 0px 7px rgba(0, 0, 0, 0.5)',
 	},
 	avatarCard:{
@@ -37,7 +37,7 @@ const styles = () => ({
 		margin: 36,
 		fontSize: 20,
 		maxWidht: 20,
-		background:'linear-gradient(45deg, #0f0202 30%, #860203 90%)',
+		background:'linear-gradient(45deg, #860203 30%, #0f0202 90%)',
 		borderRadius: 350,
 		maxWidth:230,
 		minWith: 230,
@@ -45,10 +45,10 @@ const styles = () => ({
 	},
 	button:{
 		background: 'linear-gradient(45deg,#490303 30%, #FF8E53 90%)',
-		borderRadius: 30,
+		borderRadius: 50,
 		border: 0,
 		color: 'white',
-		height: 48,
+		height: 58,
 		padding: '0 40px',
 		marginBottom:36,
 	},
@@ -60,26 +60,20 @@ const styles = () => ({
 		textShadow: '5px 5px rgba(0,0,0, 1)',
 	},
 	artistTitle:{
+		display:"flex",
 		fontFamily: 'journal',
 		fontSize:50,
 		color:'white',
-		overflow: 'hidden',
-		textOverflow: 'ellipsis',
-		display: '-webkit-box',
-		WebkitLineClamp:1,
-		WebkitBoxOrient:'vertical',
-		textShadow: '5px 5px rgba(0,0,0, 1)',
+		maxHeight:100,
+		minHeight:100,
+        textShadow: '5px 5px rgba(0,0,0, 1)',
 		textAlign:"center",
+		alignItems:"center",
 	},
 	artistTitle2:{
 		fontFamily: 'journal',
 		fontSize:50,
 		color:'white',
-		overflow: 'hidden',
-		textOverflow: 'ellipsis',
-		display: '-webkit-box',
-		WebkitLineClamp:1,
-		WebkitBoxOrient:'vertical',
 		textShadow: '5px 5px rgba(0,0,0, 1)',
 		textAlign:"center",
 	}
@@ -148,49 +142,44 @@ class SimilarArtists extends Component {
 			
 				<Grid container justify='center' alignItems='center' className="bgHome">
 					<Header />
-					<Grid container justify='center' alignItems='center'  xs={8} >
+					<Grid item xs={8} >
+					<Grid container justify='center' alignItems='center'   >
 					<Grid container justify='center' alignItems='center' direction="column" >
 							<Grid item>
 								<Avatar src={this.state.artistInfo.image[3]["#text"]} alt="img" className={classes.avatar}></Avatar>
 							</Grid>
 							<Grid item>
 								<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
-									<Typography className={classes.artistTitle1}>{this.state.artistInfo.name}</Typography>
+									<h2 className={classes.artistTitle1}>{this.state.artistInfo.name}</h2>
 								</Link>
 								</Grid>
-								
-							<Typography className={classes.artistTitle2}>Wanna C some more, dude ?</Typography>
+							<h2 className={classes.artistTitle2}>Wanna C some more, dude ?</h2>
 							</Grid>
 							{this.state.artists.map(
 								(element, i) =>
 								<div key={i}>
-									<Card className={classes.card}>
+						<Card className={classes.card}>
 							<Grid container alignItems='center' direction="column">
 								<CardActionArea>
-								<Grid item className={classes.item}>	
 								<Avatar src={element.image[3]["#text"]} alt="img" className={classes.avatarCard} ></Avatar>
-								</Grid>
 								<CardContent>
-							<Grid item className={classes.item}>	
 								<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
-								<p id={i} className={classes.artistTitle} >{element.name}</p>
+								<h2 id={i} className={classes.artistTitle} >{element.name}</h2>
 								</Link>
-							</Grid>
 								</CardContent>
 								</CardActionArea>
 								<CardActions >
-							<Grid item className={classes.item} >	
 								<Link to={`/similar-artist/${element.name}`}>
 									<Button variant="contained" color="primary" className={classes.button}>
 									<AddIcon />
 									</Button >
 									</Link>
-									</Grid>
-								</CardActions>
+									</CardActions>
 								</Grid>
 								</Card>
 								</div>
 							)}
+						</Grid>
 						</Grid>
 				</Grid>
 			);
