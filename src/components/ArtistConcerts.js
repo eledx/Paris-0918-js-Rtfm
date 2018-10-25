@@ -59,7 +59,11 @@ class ArtistConcerts extends Component {
 							<li>{this.props.artistName}</li>
 							<li className={this.props.classes.li}>{element.venue.displayName}</li>
 							<li className={this.props.classes.li}> {element.location.city.replace(", ", " - ")}</li>
-							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer">Plan</a></li>
+							<li className={this.props.classes.li}>
+								<a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer" title="location">
+									<i className="material-icons md-dark">place</i>
+								</a>
+							</li>
 						</ul>
 				)}
 			</Grid>
