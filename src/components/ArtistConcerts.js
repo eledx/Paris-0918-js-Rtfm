@@ -19,7 +19,7 @@ class ArtistConcerts extends Component {
 		return `https://api.songkick.com/api/3.0/search/artists.json?apikey=u7XCPTAHztwOPCRa&query=${this.props.artistName}`;
 	}
 
-	apiConcertsWithId(id) { //121125
+	apiConcertsWithId(id) { //976593
 		return `https://api.songkick.com/api/3.0/artists/${id}/calendar.json?apikey=u7XCPTAHztwOPCRa&per_page=3`;
 	}
 
@@ -47,23 +47,23 @@ class ArtistConcerts extends Component {
 		let moment = require('moment');
 		//console.log(this.state.concert)
 		return (
-			
+
 			<Grid container justify="center" className="artistConcert">
 				{this.state.concert.event.map(
 					(element, index) =>
 						<ul className='displayPostIt' key={index}>
-							<li className={this.props.classes.li}>{ moment(element.start.date).format( 'MMMM Do YYYY')}
+							<li className={this.props.classes.li}>{moment(element.start.date).format('MMMM Do YYYY')}
 								{/*ternaire*/}
 								{element.start.datetime !== null ? ' - ' + moment(element.start.datetime).format('h:mm') : ''}
-								}
 							</li>
-							{element.performance.map(
-								(artisteName, index2) =>
-								<li key={index2}>{artisteName.displayName}</li>
-							)}
+							<li>{this.props.artistName}</li>
 							<li className={this.props.classes.li}>{element.venue.displayName}</li>
-							<li className={this.props.classes.li}> {element.location.city.replace(", "," - ")}</li>
-							<li className={this.props.classes.li}><a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer">Plan</a></li>
+							<li className={this.props.classes.li}> {element.location.city.replace(", ", " - ")}</li>
+							<li className={this.props.classes.li}>
+								<a className={this.props.classes.a} href={`https://www.google.fr/maps/dir/${element.venue.lat},${element.venue.lng}`} target="_blank" rel="noopener noreferrer" title="location">
+									<i className="material-icons md-dark">place</i>
+								</a>
+							</li>
 						</ul>
 				)}
 			</Grid>

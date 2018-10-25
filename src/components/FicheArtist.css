@@ -232,7 +232,7 @@
     border-radius: 50%;
     height: 246px;
     position: absolute;
-    animation: disc-spin infinite 0.1s linear;
+    animation: disc-spin infinite 5s linear;
     animation-play-state: paused;
   }
   
@@ -240,3 +240,5 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+
+  .material-icons.md-dark { color:#840303; }
