@@ -24,6 +24,11 @@
   src: url('./font/BLOODY.TTF');
 }
 
+  @font-face {
+    font-family: 'stupr';
+    src: url('./font/alligators.ttf');
+}
+
 
 .bgHome{
   min-height: 100vh;

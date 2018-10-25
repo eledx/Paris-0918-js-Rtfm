@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 
 const styles = () => ({
         link:{
-                fontFamily: 'blood',
+                fontFamily: 'stupr',
                 fontSize:130,
 		color:'#ce0404',
                 textShadow: '5px 5px rgba(0,0,0, 1)',
                 textAlign:"center",
                 marginTop:20,
+                hover:"black"
                 
                 },
         text1:{
@@ -43,7 +44,7 @@ const Erreur = (props) => {
                 
         <div className="erreur">
                 <Grid container className={classes.container} justify="center">
-                        <Link to={`/`} className={classes.link} style={{textDecoration:'none'}}>4.0.4</Link>
+                        <Link to={`/`} className={classes.link} style={{textDecoration:'none'}}>horror 4.0.4</Link>
                         <Grid item xs={12} className={classes.text1}> WELCOME IN HELL</Grid>
                         <Grid item xs={12}  className={classes.text2}>U found a dead link, bro!</Grid>
                 </Grid> 

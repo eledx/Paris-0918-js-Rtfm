@@ -48,7 +48,7 @@ class Tracks extends Component {
 		});
 		//console.log("playlist", playlist)
 		if (playlist.length === 0)
-			return `Sorry, we haven't any tracks from ${this.props.artistName}`
+			return <p className="noTracks">Sorry, we haven't any tracks from {this.props.artistName} </p>
 
 		return (
 			<Grid container justify="center" className="containerMusicPlayer">

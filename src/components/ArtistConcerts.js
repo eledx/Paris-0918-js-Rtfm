@@ -41,7 +41,7 @@ class ArtistConcerts extends Component {
 		if (this.state.concert === null)
 			return <LoadSpinner />;
 		if (Object.getOwnPropertyNames(this.state.concert).length === 0) {
-			return "No upcoming concerts";
+			return <p className="noConcert">No concerts</p>
 		}
 		//Utilisation de la librairie moment.js pour manipuler les Dates.. TOP LIBRARY npm install moment
 		let moment = require('moment');
