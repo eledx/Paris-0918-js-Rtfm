@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 /* Components Pages */
@@ -22,10 +22,7 @@ const theme = createMuiTheme({
   }
 });
 
-/*a tester en fonction (composant bete)*/
-class App extends Component {
-
-  render() {
+const App = (props)=> {
     return (
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
@@ -33,11 +30,11 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/similar-artist/:name" component={SimilarArtists} />
             <Route exact path="/fiche-artist/:name" component={FicheArtist} />
+            <Route exact path="/erreur-404" component={Erreur} />
           </Switch>
         </BrowserRouter>
       </MuiThemeProvider>
     );
-  }
 }
 
 export default App;

@@ -9,12 +9,9 @@ const stylesArtistConcert = withStyles => ({
 });
 
 class ArtistConcerts extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			id: null,
-			concert: null
-		};
+	state = {
+		id: null, //id de l'artiste
+		concert: null // concert de l'artiste
 	}
 
 	apiConcertsByName() {
@@ -56,11 +53,13 @@ class ArtistConcerts extends Component {
 					(element, index) =>
 						<ul className='displayPostIt' key={index}>
 							<li className={this.props.classes.li}>{ moment(element.start.date).format( 'MMMM Do YYYY')}
+								{/*ternaire*/}
 								{element.start.datetime !== null ? ' - ' + moment(element.start.datetime).format('h:mm') : ''}
+								}
 							</li>
 							{element.performance.map(
-								(artisteName) =>
-								<li>{artisteName.displayName}</li>
+								(artisteName, index2) =>
+								<li key={index2}>{artisteName.displayName}</li>
 							)}
 							<li className={this.props.classes.li}>{element.venue.displayName}</li>
 							<li className={this.props.classes.li}> {element.location.city.replace(", "," - ")}</li>

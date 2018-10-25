@@ -139,7 +139,9 @@ class SimilarArtists extends Component {
 					<Grid container justify='center' alignItems='center'   >
 						<Grid container justify='center' alignItems='center' direction="column" >
 							<Grid item>
-								<Avatar src={this.state.artistInfo.image[3]["#text"]} alt={this.state.artistInfo.name} className={classes.avatar}></Avatar>
+								<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
+									<Avatar src={this.state.artistInfo.image[3]["#text"]} alt={this.state.artistInfo.name} className={classes.avatar}></Avatar>
+								</Link>
 							</Grid>
 							<Grid item>
 								<Link to={`/fiche-artist/${this.state.artistInfo.name}`} style={{textDecoration:'none'}}>
@@ -153,14 +155,14 @@ class SimilarArtists extends Component {
 							<div key={i}>
 								<Card className={classes.card}>
 									<Grid container alignItems='center' direction="column">
-										<CardActionArea>
-											<Avatar src={element.image[3]["#text"]} alt={element.name} className={classes.avatarCard} ></Avatar>
-											<CardContent>
-												<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
+										<Link to={`/fiche-artist/${element.name}`} style={{textDecoration:'none'}}>
+											<CardActionArea>
+												<Avatar src={element.image[3]["#text"]} alt={element.name} className={classes.avatarCard} ></Avatar>
+												<CardContent>
 													<h2 id={i} className={classes.artistTitle} >{element.name}</h2>
-												</Link>
-											</CardContent>
-										</CardActionArea>
+												</CardContent>
+											</CardActionArea>
+										</Link>
 										<CardActions >
 											<Link to={`/similar-artist/${element.name}`}>
 												<Button variant="contained" color="primary" className={classes.button}>

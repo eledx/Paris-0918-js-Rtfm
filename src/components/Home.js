@@ -126,8 +126,8 @@ class Home extends Component {
 
               <div className={classes.resultAutocomplete}>
                 {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) =>
-                  <Link to={`/similar-artist/${element.name}`}>
-                    <p className={classes.p} key={i} style={pointer}>{element.name}</p>
+                  <Link key={i} to={`/similar-artist/${element.name}`}>
+                    <p className={classes.p} style={pointer}>{element.name}</p>
                   </Link>
                 ))}
               </div>

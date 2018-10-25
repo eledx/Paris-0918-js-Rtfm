@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 /* Components */
 import ArtistBio from './ArtistBio';
@@ -21,22 +21,19 @@ const theme = createMuiTheme({
 	},
 });
 
-class FicheArtist extends Component {
-
-	render() {
-		return (
-			<MuiThemeProvider theme={theme}>
-				<Grid container justify='center' className="bgHome">
-					<Grid item xs={8}>
-						<Header />
-						<ArtistConcerts artistName={this.props.match.params.name} />
-						<ArtistBio artistName={this.props.match.params.name} />
-						<Tracks artistName={this.props.match.params.name} />
-					</Grid>
+const FicheArtist = (props) => {
+	return (
+		<MuiThemeProvider theme={theme}>
+			<Grid container justify='center' className="bgHome">
+				<Grid item xs={8}>
+					<Header />
+					<ArtistConcerts artistName={props.match.params.name} />
+					<ArtistBio artistName={props.match.params.name} />
+					<Tracks artistName={props.match.params.name} />
 				</Grid>
-			</MuiThemeProvider>
-		)
-	}
+			</Grid>
+		</MuiThemeProvider>
+	)
 }
 
 export default FicheArtist;
