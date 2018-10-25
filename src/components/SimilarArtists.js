@@ -121,7 +121,7 @@ class SimilarArtists extends Component {
 
 		if (prevProps.match.params.name !== this.props.match.params.name) {
 			this.getArtists()
-		}
+		}	
 	}
 
 	render() {
