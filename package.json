@@ -10,7 +10,6 @@
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
-    "react-responsive-music-player": "^0.3.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.3",
     "react-spinners": "^0.4.5",

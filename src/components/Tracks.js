@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 /* Components */
 import LoadSpinner from './LoadSpinner';
-import MusicPlayer from 'react-responsive-music-player';
+import MusicPlayer from './MusicPlayer';
 
 /* Components Material UI */
 import { Grid } from '@material-ui/core';
@@ -54,7 +54,6 @@ class Tracks extends Component {
 			<Grid container justify="center" className="containerMusicPlayer">
 
 				<div>
-					<img className="activateDisc" src="https://stephaneaguileravideaste.boutique/WebRoot/Store9/Shops/bdf3a82d-4a2f-4721-839a-2e256f94830b/588A/3670/1919/8A94/91FE/0A48/351F/5440/disque-vinyls-12-macarons-vierges_ml.jpg" alt="Disque vinyle" />
 					<MusicPlayer playlist={playlist} />
 				</div>
 			</Grid>

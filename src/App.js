@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import SimilarArtists from './components/SimilarArtists';
 import FicheArtist from './components/FicheArtist';
 import Home from './components/Home';
+import Erreur from './components/Erreur'
 
 /* CSS */
 import './App.css';
@@ -30,7 +31,7 @@ const App = (props)=> {
             <Route exact path="/" component={Home} />
             <Route exact path="/similar-artist/:name" component={SimilarArtists} />
             <Route exact path="/fiche-artist/:name" component={FicheArtist} />
-            <Route exact path="/erreur-404" component={Erreur} />
+            <Route exact path="/404" component={Erreur} />
           </Switch>
         </BrowserRouter>
       </MuiThemeProvider>

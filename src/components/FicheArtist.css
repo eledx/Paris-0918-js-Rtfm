@@ -3,10 +3,7 @@
     font-family: 'textTrash';
     src: url('../font/Old_Press.ttf');
 }
-@font-face {
-    font-family: 'stamp';
-    src: url('../font/RUBBERSTAMP.otf');
-}
+
 /* Background page artist */
 /*.backgroundDisc{
     background: url("https://stephaneaguileravideaste.boutique/WebRoot/Store9/Shops/bdf3a82d-4a2f-4721-839a-2e256f94830b/588A/3670/1919/8A94/91FE/0A48/351F/5440/disque-vinyls-12-macarons-vierges_ml.jpg")
@@ -204,8 +201,6 @@
         to { transform: rotate(360deg); }
     }*/
 
-
-.cover-container{display: none;}
 .music-info{font-size: 12px;}
 .music-info h2, .music-info h3{margin: 5px 0;}
 .music-info h3{font-style: italic;}
@@ -222,13 +217,23 @@
 .info-and-control{
     z-index: 1;
 }
-.activateDisc{
+.activateDisc-play{
     width: 243px;
     background-size: cover;
     border-radius: 50%;
     height: 246px;
     position: absolute;
-    animation: disc-spin infinite 20s linear;
+    animation: disc-spin infinite 5s linear;
+  }
+
+.activateDisc-pause{
+    width: 243px;
+    background-size: cover;
+    border-radius: 50%;
+    height: 246px;
+    position: absolute;
+    animation: disc-spin infinite 0.1s linear;
+    animation-play-state: paused;
   }
   
   @keyframes disc-spin {

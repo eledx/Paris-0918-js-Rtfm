@@ -15,6 +15,14 @@
   font-family: 'metal';
   src: url('./font/Metal_Lord.ttf');
 }
+@font-face {
+  font-family: 'stamp';
+  src: url('./font/RUBBERSTAMP.otf');
+}
+@font-face {
+  font-family: 'blood';
+  src: url('./font/BLOODY.TTF');
+}
 
 
 .bgHome{
