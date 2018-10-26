@@ -34,7 +34,15 @@ class ArtistBio extends Component {
 	componentDidMount() {
 		fetch(this.requestUrlApi())
 			.then(resp => resp.json())
-			.then(resp => this.setState({ artists: resp.artist }))
+			.then(resp => {
+				this.setState({ artists: resp.artist })
+				if(this.state.artists.image[3]["#text"] === "" || this.state.artists.image[3]["#text"].includes("829708da4a28499ac9db9a7968b912b7") || this.state.artists.image[3]["#text"].includes("233fe1793c404080c03b8859cbb313be")) {
+					this.props.error();
+					//console.log('erroBio1', this.props.stateError )
+			
+				}
+			})
+
 	}
 	
 	render() {
@@ -42,7 +50,12 @@ class ArtistBio extends Component {
 			return <LoadSpinner />;
 		}
 		const regex = /<a.+a>/g;
-
+		
+		if(this.state.artists.image[3]["#text"] === "" || this.state.artists.image[3]["#text"].includes("829708da4a28499ac9db9a7968b912b7") || this.state.artists.image[3]["#text"].includes("233fe1793c404080c03b8859cbb313be")) {
+			console.log('errorBio2', this.props.stateError )
+			return null;
+		}
+		
 		//console.log("artistBio",this.props.artistName)
 		return (
 			

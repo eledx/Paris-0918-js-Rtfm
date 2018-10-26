@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 
 /* Components */
 import ArtistBio from './ArtistBio';
@@ -21,19 +22,37 @@ const theme = createMuiTheme({
 	},
 });
 
-const FicheArtist = (props) => {
-	return (
-		<MuiThemeProvider theme={theme}>
-			<Grid container justify='center' className="bgHome">
-				<Grid item xs={8}>
-					<Header />
-					<ArtistConcerts artistName={props.match.params.name} />
-					<ArtistBio artistName={props.match.params.name} />
-					<Tracks artistName={props.match.params.name} />
+class FicheArtist extends Component{
+	state = {
+		errorBio: false, //gestion error biographie
+		errorConcert: false, //gestion error concert
+	}
+	
+	handleErrorBio = () => {
+		this.setState({errorBio: true})
+	}
+	handleErrorConcert= () => {
+		this.setState({errorConcert: true})
+	}
+	
+	render() {
+		console.log("tut" , this.state)
+		if(this.state.errorBio && this.state.errorConcert){
+			return	<Redirect to={`/404`}/>
+		}
+		return (
+			<MuiThemeProvider theme={theme}>
+				<Grid container justify='center' className="bgHome">
+					<Grid item xs={8}>
+						<Header />
+						<ArtistConcerts artistName={this.props.match.params.name} error={this.handleErrorConcert} stateError={this.state.errorConcert} />
+						<ArtistBio artistName={this.props.match.params.name} error={this.handleErrorBio} stateError={this.state.errorBio} />
+						<Tracks artistName={this.props.match.params.name} />
+					</Grid>
 				</Grid>
-			</Grid>
-		</MuiThemeProvider>
-	)
+			</MuiThemeProvider>
+		)
+	}
 }
 
 export default FicheArtist;

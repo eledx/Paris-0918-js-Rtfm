@@ -33,15 +33,30 @@ class ArtistConcerts extends Component {
 					fetch(this.apiConcertsWithId(id))
 						.then(resp => resp.json())
 						.then(resp => this.setState({ concert: resp.resultsPage.results }))
+				} else {
+					if(!this.props.stateError) {
+						// console.log("tamaman")
+						this.props.error();
+						// console.log('errorCon1', this.props.stateError )
+					}
+					// console.log("maman")
 				}
 			});
 	}
 
+
 	render() {
+		//console.log('turututu', this.state.concert, this.state.id)
 		if (this.state.concert === null)
-			return <LoadSpinner />;
+			if(this.state.id === null) {
+				console.log('errorCon2', this.props.stateError )
+				return <p className="noConcert">No concerts</p>
+			}
+			else
+				return <LoadSpinner />;
 		if (Object.getOwnPropertyNames(this.state.concert).length === 0) {
-			return <p className="noConcert">No concerts</p>
+				return <p className="noConcert">No concerts</p>
+
 		}
 		//Utilisation de la librairie moment.js pour manipuler les Dates.. TOP LIBRARY npm install moment
 		let moment = require('moment');

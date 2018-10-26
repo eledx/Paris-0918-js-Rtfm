@@ -5,7 +5,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import SimilarArtists from './components/SimilarArtists';
 import FicheArtist from './components/FicheArtist';
 import Home from './components/Home';
-import Erreur from './components/Erreur'
+import Erreur from './components/Erreur';
 
 /* CSS */
 import './App.css';
