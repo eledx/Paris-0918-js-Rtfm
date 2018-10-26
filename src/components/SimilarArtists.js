@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 /* Components */
 import LoadSpinner from './LoadSpinner';
@@ -59,12 +59,16 @@ const styles = () => ({
 		textShadow: '5px 5px rgba(0,0,0, 1)',
 	},
 	artistTitle:{
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		display: '-webkit-box',
+		WebkitBoxOrient:'vertical',
 		
 		fontFamily: 'journal',
 		fontSize:50,
 		color:'white',
-		maxHeight:80,
-		minHeight:80,
+		maxHeight:110,
+		minHeight:110,
         textShadow: '5px 5px rgba(0,0,0, 1)',
 		textAlign:"center",
 		
@@ -129,7 +133,7 @@ class SimilarArtists extends Component {
 
 		if (this.state.artists === null || this.state.artistInfo === null) //attente des datas
 			if (this.state.error === true) //pas de data car recherche improbable 
-				return <p style={{ color: 'white' }}>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</p>
+				return <Redirect to={"/404"}/>
 			else
 				return <LoadSpinner />
 		return (
