@@ -13,7 +13,7 @@ class Tracks extends Component {
 	}
 
 	requestUrlApi() {
-		this.proxy = `http://a475d407.ngrok.io`;
+		this.proxy = `http://07c94849.ngrok.io`;
 		this.artistName = this.props.artistName;
 		this.limit = '10';
 		return `${this.proxy}/search?q=${this.artistName}&limit=${this.limit}&output=json`;
