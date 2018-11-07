@@ -53,7 +53,8 @@ class ArtistConcerts extends Component {
 				return <p className="noConcert">No concerts</p>
 			}
 			else
-				return <LoadSpinner />;
+				return <LoadSpinner />
+				
 		if (Object.getOwnPropertyNames(this.state.concert).length === 0) {
 				return <p className="noConcert">No concerts</p>
 
