@@ -1,0 +1,273 @@
+    @import url('https://fonts.googleapis.com/css?family=Reenie+Beanie');
+    @font-face {
+        font-family: 'textTrash';
+        src: url('../font/Old_Press.ttf');
+    }
+
+    /* Background page artist */
+    /*.backgroundDisc{
+        background: url("https://stephaneaguileravideaste.boutique/WebRoot/Store9/Shops/bdf3a82d-4a2f-4721-839a-2e256f94830b/588A/3670/1919/8A94/91FE/0A48/351F/5440/disque-vinyls-12-macarons-vierges_ml.jpg")
+        no-repeat center top;
+        background-size: cover;
+        height: 100%;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        min-height: 100vh;
+    }*/
+    /* Fin Background page artist */
+
+
+    /* Component ArtistBio */
+    /* Style por l'effet diapo */
+    @media screen and (max-width: 829px){
+        .effectDiapo{
+            margin-top: 35px !important;
+        }
+    }
+    .effectDiapo{
+        margin: 55px 0;
+    }
+    .effectDiapo span {
+        font-family: "journal";
+        z-index: 1;
+        background: white;
+        float: left;
+        margin: 0 15px 30px;
+        padding: 10px 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 4px 6px rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+        -moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
+        transition: all .15s linear;
+        -webkit-transition: all .15s linear;
+        -moz-transition: all .15s linear;
+        transform: rotate(-10deg);
+        -webkit-transform: rotate(-10deg);
+        -moz-transform: rotate(-10deg);
+    }
+    .effectDiapo span:after {
+        color: #fcec09;
+        font-size: 40px;
+        text-shadow: 5px 5px black;
+        content: attr(title);
+        font-family: 'stamp';
+        position: absolute;
+        margin-top: 0px;
+        line-height: 1.1;
+        transform: rotate(-15deg);
+        -webkit-transform: rotate(-15deg);
+        -moz-transform: rotate(-15deg);
+    }
+    .effectDiapo img {
+        display: block;
+        width: inherit;
+        width: 225px;
+        height: auto;
+    }
+    /* Fin effet diapo */
+
+
+    /* Component ArtistConcerts */
+    .artistConcert{margin-bottom: 75px;}
+    /* Effet Post-It */
+    @media screen and (max-width: 826px) {
+        .displayPostIt{
+            top:10px;
+            transform: rotate(5deg);
+            -moz-transform: rotate(5deg);
+            -webkit-transform: rotate(5deg);
+            -o-transform: rotate(5deg);
+            -ms-transform: rotate(5deg);
+        }
+        .displayPostIt:nth-child(2){
+            top:25px;
+            transform: rotate(-4deg);
+            -moz-transform: rotate(-4deg);
+            -webkit-transform: rotate(-4deg);
+            -o-transform: rotate(-4deg);
+            -ms-transform: rotate(-4deg);
+        }
+        .displayPostIt:nth-child(3){
+            top:48px;
+            transform: rotate(10deg);
+            -moz-transform: rotate(10deg);
+            -webkit-transform: rotate(10deg);
+            -o-transform: rotate(10deg);
+            -ms-transform: rotate(10deg);
+        }
+    }
+    @media screen and (min-width: 826px) {
+        .displayPostIt{
+            transform: rotate(5deg);
+            -moz-transform: rotate(5deg);
+            -webkit-transform: rotate(5deg);
+            -o-transform: rotate(5deg);
+            -ms-transform: rotate(5deg);
+        }
+        .displayPostIt:nth-child(2){
+            top:10px;
+            transform: rotate(-20deg);
+            -moz-transform: rotate(-20deg);
+            -webkit-transform: rotate(-20deg);
+            -o-transform: rotate(-20deg);
+            -ms-transform: rotate(-20deg);
+        }
+        .displayPostIt:nth-child(3){
+            top:2px;
+            transform: rotate(10deg);
+            -moz-transform: rotate(10deg);
+            -webkit-transform: rotate(10deg);
+            -o-transform: rotate(10deg);
+            -ms-transform: rotate(10deg);
+        }
+    }
+    .displayPostIt{
+        padding: 2%;
+        width: 275px;    
+        background-color: #FFFF77;
+        box-shadow: 2px 4px 6px #444;
+        -moz-box-shadow: 2px 4px 6px #444;
+        -webkit-box-shadow: 2px 4px 6px #444;
+        border-bottom-right-radius: 60px 10px;
+        align-self: self-start;
+        list-style: none;
+    }
+    .displayPostIt:nth-child(2){
+        position:relative;
+        background:#cfc;
+    }
+    .displayPostIt:nth-child(3){
+        position:relative;
+        background:#DEFF7C;
+    }
+    .displayPostIt li {
+        font-family: "Open Sans";
+        font-size: 17px;
+    }
+
+    .displayPostIt li:first-child{font-weight: bold;}
+    .displayPostIt li:last-child{text-align: right;font-weight: bold;}
+    .displayPostIt li:nth-child(2){font-style: italic;}
+    .displayPostIt li:nth-child(4){font-weight:bold;}
+    .displayPostIt li a{
+        color: black;
+        font-style: italic;
+        font-size: 11px;
+        text-decoration: underline;
+    }
+    /* Fin Effet Post-It */
+
+    /* Component ArtistBio */
+    @media screen and (max-width: 960px) {
+        .rotateText{
+            margin-top: 55px !important;
+        }
+    }
+    .rotateText p{
+        transform: rotate(8deg);
+        line-height: 1;
+        padding: 24px;
+    }
+    /* Fin Component ArtistBio */
+
+
+    
+    /* Player Tracks */
+    .containerMusicPlayer{margin: 30px 0;}
+    /*.player-container{background: black;padding: 68px;border-radius: 50%;box-shadow: 4px 3px 28px #AA9;
+        width: 262px;}*/
+
+
+    .player-container{
+        /*background: url("https://stephaneaguileravideaste.boutique/WebRoot/Store9/Shops/bdf3a82d-4a2f-4721-839a-2e256f94830b/588A/3670/1919/8A94/91FE/0A48/351F/5440/disque-vinyls-12-macarons-vierges_ml.jpg");*/
+        padding: 68px;
+        border-radius: 50%;
+        box-shadow: 4px 3px 28px #AA9;
+        width: 243px;
+        height:243px;
+        background-size: contain;
+        background-repeat: no-repeat;
+
+
+
+
+        
+        /*  animation: App-logo-spin infinite 20s linear;*/
+        /* height: 80px;*/
+    }
+
+    /*@keyframes App-logo-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }*/
+    .music-info{font-size: 13px;}
+    .music-info h2, .music-info h3{margin: 5px 0;}
+    .music-info h3{font-style: italic;}
+    .music-info .title, .music-info .artist, .icon{color:#d49610 !important;text-shadow: 1.5px 0px red}
+    .progress-container .progress{background-color: #aa0000 !important;}
+    .progress-container{background:#d49610 !important}
+    .player-container .info-and-control .progress-container{height:2px !important;}
+    .player-container .info-and-control .control-container{margin-top:15px;}
+    .controls{margin-left: 20px;}
+    /* Player Tracks */
+
+
+
+    .info-and-control{
+        z-index: 1;
+    }
+    .activateDisc-play{
+        width: 243px;
+        background-size: cover;
+        border-radius: 50%;
+        height: 246px;
+        position: absolute;
+        animation: disc-spin infinite 5s linear;
+    }
+
+    .activateDisc-pause{
+        width: 243px;
+        background-size: cover;
+        border-radius: 50%;
+        height: 246px;
+        position: absolute;
+        animation: disc-spin infinite 5s linear;
+        animation-play-state: paused;
+    }
+    
+    @keyframes disc-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .material-icons.md-dark { color:#840303; }
+
+    .noConcert{
+        font-family: 'stamp';
+        font-size: 60px;
+		color:#d49610;
+		max-height:80px;
+        min-height:80px;
+        margin-bottom:50px;
+        margin-left:30px;
+        text-shadow: 5px 5px black;
+        transform: rotate(-8deg);
+        -moz-transform: rotate(-8deg);
+        -webkit-transform: rotate(-8deg);
+        -o-transform: rotate(-8deg);
+        -ms-transform: rotate(-8deg);
+    }
+
+    .noTracks{
+        font-family: 'stamp';
+        font-size: 60px;
+		color:#d49610;
+		max-height:80px;
+		min-height:80px;
+        text-shadow: 5px 5px black;
+        text-align:"center";
+        margin-top: 60px;
+    }
