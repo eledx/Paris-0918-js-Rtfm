@@ -9,24 +9,21 @@ const override = css`
 `;
 
 class LoadSpinner extends Component {
-	constructor(props) {
-	    super(props);
-	    this.state = {
-	      loading: true
-	    }
-  	}
+	state = {
+		loading: true
+	}
 
 	render() {
 		return (
 			<div className='sweet-loading'>
 	        	<ScaleLoader
-		          className={override}
-		          sizeUnit={"px"}
-		          size={150}
-		          color={'#604c8d'}
-		          loading={this.state.loading}
+					className={override}
+					sizeUnit={"px"}
+					size={150}
+					color={'#604c8d'}
+					loading={this.state.loading}
 	        	/>
-     		</div> 
+			</div> 
 		);
 	}
 }
