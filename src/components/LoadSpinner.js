@@ -5,7 +5,9 @@ import { ScaleLoader } from 'react-spinners';
 const override = css`
     display: block;
     margin: 0 auto;
-    border-color: red;
+	border-color: red;
+	  display: inline-flex;
+    vertical-align: middle;
 `;
 
 class LoadSpinner extends Component {
@@ -19,8 +21,8 @@ class LoadSpinner extends Component {
 	        	<ScaleLoader
 					className={override}
 					sizeUnit={"px"}
-					size={150}
-					color={'#604c8d'}
+					size={180}
+					color={'#D71818'}
 					loading={this.state.loading}
 	        	/>
 			</div> 

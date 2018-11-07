@@ -135,7 +135,10 @@ class SimilarArtists extends Component {
 			if (this.state.error === true) //pas de data car recherche improbable 
 				return <Redirect to={"/404"}/>
 			else
-				return <LoadSpinner />
+				return (
+					<Grid  container justify='center'style={{height:'100vh'}} alignItems='center' >
+				<LoadSpinner />
+				</Grid>)
 		return (
 			<Grid container justify='center' alignItems='center' className="bgHome">
 				<Header />
