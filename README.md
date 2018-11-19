@@ -2,7 +2,7 @@
 
 
 This webapp has been created from scratch by 6 students during the Wild Code School training.&nbsp;
-(Start 24/09/2018 End: 07/11/18 - 6 weeks)&nbsp;
+(Start: 24/09/2018 End: 07/11/18 - 6 weeks)&nbsp;
 
 ### Technologies :
 **JS / REACT / MATERIAL-UI**
