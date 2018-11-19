@@ -1,4 +1,4 @@
-## [wild code School](https://wildcodeschool.fr/) second project
+## [Wild Code School](https://wildcodeschool.fr/) second project
 
 
 This webapp has been created from scratch by 6 students during the Wild Code School training.&nbsp;
